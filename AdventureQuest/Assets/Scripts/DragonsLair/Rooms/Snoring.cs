@@ -22,43 +22,43 @@ cave.";
         public IRoom HandleInput(ITextAdventure adventure)
         {
             string input = adventure.GetInput().ToLower();
-            DragonsLairAdventure cave = (DragonsLairAdventure)adventure;
+            DragonsLairAdventure dla = (DragonsLairAdventure)adventure;
 
             if (input.Equals("snoring"))
             {
-                cave.Print("You slowly approach the snoring...\n");
-                return cave.DragonLair;
+                dla.Print("You slowly approach the snoring...\n");
+                return dla.DragonLair;
             }
-            else if (input.Equals("chest") && cave.HasKey)
+            else if (input.Equals("chest") && dla.HasKey)
             {
 
-                if (cave.HasSword == false)
+                if (dla.HasSword == false)
                 {
-                    cave.Print("The chest is locked.\n");
-                    cave.Sleep(1);
-                    cave.Print("You take the key from your pocket and unlock the chest.\n");
-                    cave.Sleep(1);
-                    cave.Print("Inside, you find a beautiful sword!\n");
-                    cave.HasSword = true;
+                    dla.Print("The chest is locked.\n");
+                    dla.Sleep(1);
+                    dla.Print("You take the key from your pocket and unlock the chest.\n");
+                    dla.Sleep(1);
+                    dla.Print("Inside, you find a beautiful sword!\n");
+                    dla.HasSword = true;
                 }
                 else
                 {
-                    cave.Print("You search the chest again, but it is empty.\n");
+                    dla.Print("You search the chest again, but it is empty.\n");
                 }
 
             }
-            else if (input.Equals("chest") && !cave.HasKey)
+            else if (input.Equals("chest") && !dla.HasKey)
             {
-                cave.Print("The chest is locked!\n");
+                dla.Print("The chest is locked!\n");
             }
             else if (input.Equals("tunnel"))
             {
-                cave.Print("You head back toward the mouth of the cave.\n");
-                return cave.Tunnel;
+                dla.Print("You head back toward the mouth of the cave.\n");
+                return dla.Tunnel;
             }
             else
             {
-                cave.Print("Invalid command!\n");
+                dla.Print("Invalid command!\n");
             }
 
             return this;

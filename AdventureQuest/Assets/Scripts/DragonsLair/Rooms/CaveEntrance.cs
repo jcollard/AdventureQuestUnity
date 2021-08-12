@@ -23,11 +23,12 @@ their gold. Dare you [enter] the cave in search of riches? Or would you rather
         {
             string input = adventure.GetInput().ToLower();
 
+            DragonsLairAdventure dla = (DragonsLairAdventure)adventure;
+
             if (input.Equals("enter"))
             {
                 adventure.Print("You enter the cave.\n");
-                DragonsLairAdventure _adventure = (DragonsLairAdventure)adventure;
-                return _adventure.MouthOfCave;
+                return dla.MouthOfCave;
             }
             else if (input.Equals("run"))
             {

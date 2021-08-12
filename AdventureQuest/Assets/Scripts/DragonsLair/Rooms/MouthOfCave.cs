@@ -20,23 +20,23 @@ and the other leads to the [right]. You can also see the [entrance] of the cave.
 
         public IRoom HandleInput(ITextAdventure adventure)
         {
-            DragonsLairAdventure cave = (DragonsLairAdventure)adventure;
+            DragonsLairAdventure dla = (DragonsLairAdventure)adventure;
             string input = adventure.GetInput().ToLower();
 
             if (input.Equals("right"))
             {
                 adventure.Print("You take the path to the right.\n");
-                return cave.Tunnel;
+                return dla.Tunnel;
             }
             else if (input.Equals("left"))
             {
                 adventure.Print("You take the path to the left.\n");
-                return cave.DeadEnd;
+                return dla.DeadEnd;
             }
             else if (input.Equals("entrance"))
             {
                 adventure.Print("On second thought, you return to the entrance.\n");
-                return cave.CaveEntrance;
+                return dla.CaveEntrance;
             }
             else
             {

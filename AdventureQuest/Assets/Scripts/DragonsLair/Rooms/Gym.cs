@@ -21,32 +21,32 @@ On the far wall is an [elevator].";
         public IRoom HandleInput(ITextAdventure adventure)
         {
             string input = adventure.GetInput().ToLower();
-            DragonsLairAdventure cave = (DragonsLairAdventure)adventure;
-            if (input.Equals("weights") && cave.Strength < 10)
+            DragonsLairAdventure dla = (DragonsLairAdventure)adventure;
+            if (input.Equals("weights") && dla.Strength < 10)
             {
-                cave.Print("You pick up the weights and do a rep!\n");
-                cave.Strength = cave.Strength + 6;
-                cave.Sleep(1);
-                cave.Print($"Your strength is now {cave.Strength}\n");
+                dla.Print("You pick up the weights and do a rep!\n");
+                dla.Strength = dla.Strength + 6;
+                dla.Sleep(1);
+                dla.Print($"Your strength is now {dla.Strength}\n");
             }
-            else if (input.Equals("weights") && cave.Strength >= 10)
+            else if (input.Equals("weights") && dla.Strength >= 10)
             {
-                cave.Print("You're feeling pretty strong already, maybe you could go lift some boulders!\n");
+                dla.Print("You're feeling pretty strong already, maybe you could go lift some boulders!\n");
             }
             else if (input.Equals("elevator"))
             {
-                cave.Print("You enter the elevator and begin to ascend.");
-                cave.Sleep(1);
-                cave.Print(".");
-                cave.Sleep(1);
-                cave.Print(".\n");
-                cave.Sleep(1);
-                cave.Print("The door opens and you step out into the cave.\n");
-                return cave.Tunnel;
+                dla.Print("You enter the elevator and begin to ascend.");
+                dla.Sleep(1);
+                dla.Print(".");
+                dla.Sleep(1);
+                dla.Print(".\n");
+                dla.Sleep(1);
+                dla.Print("The door opens and you step out into the cave.\n");
+                return dla.Tunnel;
             }
             else
             {
-                cave.Print("Invalid command!\n");
+                dla.Print("Invalid command!\n");
             }
 
             return this;

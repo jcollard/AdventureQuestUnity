@@ -20,34 +20,34 @@ the mouth of the cave.";
         public IRoom HandleInput(ITextAdventure adventure)
         {
             string input = adventure.GetInput().ToLower();
-            DragonsLairAdventure cave = (DragonsLairAdventure)adventure;
-            if (input.Equals("boulder") && cave.Strength < 10)
+            DragonsLairAdventure dla = (DragonsLairAdventure)adventure;
+            if (input.Equals("boulder") && dla.Strength < 10)
             {
-                cave.Print("You try to lift the boulder but you're too weak!\n");
+                dla.Print("You try to lift the boulder but you're too weak!\n");
             }
-            else if (input.Equals("boulder") && cave.Strength >= 10)
+            else if (input.Equals("boulder") && dla.Strength >= 10)
             {
-                cave.Print("You lift the boulder with ease!\n");
-                if (cave.HasKey)
+                dla.Print("You lift the boulder with ease!\n");
+                if (dla.HasKey)
                 {
-                    cave.Print("Now you're just showing off.\n");
+                    dla.Print("Now you're just showing off.\n");
                 }
                 else
                 {
-                    cave.Print("Beneath the boulder, you find a key.\n");
-                    cave.Print("You take the key and place it in your pocket!\n");
-                    cave.HasKey = true;
+                    dla.Print("Beneath the boulder, you find a key.\n");
+                    dla.Print("You take the key and place it in your pocket!\n");
+                    dla.HasKey = true;
                 }
 
             }
             else if (input.Equals("back"))
             {
-                cave.Print("You return to the Mouth of the Cave\n");
-                return cave.MouthOfCave;
+                dla.Print("You return to the Mouth of the Cave\n");
+                return dla.MouthOfCave;
             }
             else
             {
-                cave.Print("Invalid command!\n");
+                dla.Print("Invalid command!\n");
             }
 
             return this;

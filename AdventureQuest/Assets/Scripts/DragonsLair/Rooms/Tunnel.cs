@@ -22,34 +22,34 @@ continues.";
         public IRoom HandleInput(ITextAdventure adventure)
         {
             string input = adventure.GetInput().ToLower();
-            DragonsLairAdventure cave = (DragonsLairAdventure)adventure;
+            DragonsLairAdventure dla = (DragonsLairAdventure)adventure;
             if (input.Equals("button"))
             {
-                cave.Print("You press the button and wait.");
-                cave.Sleep(1);
-                cave.Print(".");
-                cave.Sleep(1);
-                cave.Print(".\n");
-                cave.Sleep(1);
-                cave.Print("DING! The wall next to the button opens revealing an elevator!\n");
-                cave.Print("Entering the elevator, you begin to descend.");
-                cave.Sleep(1);
-                cave.Print(".");
-                cave.Sleep(1);
-                cave.Print(".\n");
-                cave.Sleep(1);
-                cave.Print("The elevator door opens and you exit.\n");
-                return cave.Gym;
+                dla.Print("You press the button and wait.");
+                dla.Sleep(1);
+                dla.Print(".");
+                dla.Sleep(1);
+                dla.Print(".\n");
+                dla.Sleep(1);
+                dla.Print("DING! The wall next to the button opens revealing an elevator!\n");
+                dla.Print("Entering the elevator, you begin to descend.");
+                dla.Sleep(1);
+                dla.Print(".");
+                dla.Sleep(1);
+                dla.Print(".\n");
+                dla.Sleep(1);
+                dla.Print("The elevator door opens and you exit.\n");
+                return dla.Gym;
             }
             else if (input.Equals("tunnel"))
             {
-                cave.Print("You continue down the tunnel.\n");
-                return cave.Snoring;
+                dla.Print("You continue down the tunnel.\n");
+                return dla.Snoring;
             }
             else if (input.Equals("mouth"))
             {
-                cave.Print("You return to the mouth of the cave.\n");
-                return cave.MouthOfCave;
+                dla.Print("You return to the mouth of the cave.\n");
+                return dla.MouthOfCave;
             }
             else
             {

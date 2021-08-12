@@ -22,42 +22,42 @@ dragon. If you could [slay] it, you would be a hero!";
         public IRoom HandleInput(ITextAdventure adventure)
         {
             string input = adventure.GetInput().ToLower();
-            DragonsLairAdventure cave = (DragonsLairAdventure)adventure;
+            DragonsLairAdventure dla = (DragonsLairAdventure)adventure;
             if (input.Equals("back"))
             {
-                cave.Print("You head back the way you came.\n");
-                return cave.Snoring;
+                dla.Print("You head back the way you came.\n");
+                return dla.Snoring;
             }
             else if (input.Equals("wake"))
             {
-                cave.Print("You wake the dragon...\n");
-                cave.Sleep(1);
-                cave.Print(@"The dragon wakes and snarls, 'Who disturbs my slumber!?' It glares at you with
+                dla.Print("You wake the dragon...\n");
+                dla.Sleep(1);
+                dla.Print(@"The dragon wakes and snarls, 'Who disturbs my slumber!?' It glares at you with
 disdain and smiles crookedly before devouring you. The dragon lets out a
 satisfying belch before closing its eyes and drifting back to sleep.");
-                cave.GameOver();
+                dla.GameOver();
             }
-            else if (input.Equals("slay") && cave.HasSword)
+            else if (input.Equals("slay") && dla.HasSword)
             {
-                cave.Print("You draw your sword to slay the dragon.\n");
-                cave.Sleep(1);
-                cave.Print(@"With your sword in hand, you sneak up to the dragon and drive it into the
+                dla.Print("You draw your sword to slay the dragon.\n");
+                dla.Sleep(1);
+                dla.Print(@"With your sword in hand, you sneak up to the dragon and drive it into the
 beast's heart. The evil dragon winces as it realizes its reign of terror is
 over. Congratulations, you are a hero!");
-                cave.GameWon();
+                dla.GameWon();
             }
-            else if (input.Equals("slay") && !cave.HasSword)
+            else if (input.Equals("slay") && !dla.HasSword)
             {
-                cave.Print("You attempt to pummel the dragon with your fists!\n");
-                cave.Sleep(1);
-                cave.Print(@"The dragon wakes and snarls, 'Who disturbs my slumber!?' It glares at you with
+                dla.Print("You attempt to pummel the dragon with your fists!\n");
+                dla.Sleep(1);
+                dla.Print(@"The dragon wakes and snarls, 'Who disturbs my slumber!?' It glares at you with
 disdain and smiles crookedly before devouring you. The dragon lets out a
 satisfying belch before closing its eyes and drifting back to sleep.");
-                cave.GameOver();
+                dla.GameOver();
             }
             else
             {
-                cave.Print("Invalid command!\n");
+                dla.Print("Invalid command!\n");
             }
 
             return this;
