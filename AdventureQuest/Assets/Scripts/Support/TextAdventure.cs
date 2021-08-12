@@ -5,15 +5,18 @@ public interface TextAdventure
 {
     void Print(string message);
     void Print(string message, float delay);
+    void PrintTextFile(string resourceName, float delay);
+    string GetInput();
     void Sleep(float seconds);
     List<string> GetInventory();
     void SetRoom(Room room);
     Room GetRoom();
-    string GetStatus();
     void SetEngine(TextAdventureEngine engine);
-    TextAdventure HandleInput(string input);
     void DisplayRoom();
-    string FormatInventory();
-    void OnStart();
+    void Run();
+    void GameOver();
+    void GameWon();
+    Room OnStart();
+    
 
 }

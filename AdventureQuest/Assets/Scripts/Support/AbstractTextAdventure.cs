@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
+using UnityEngine;
 
 public abstract class AbstractTextAdventure : TextAdventure
 {
@@ -7,6 +9,8 @@ public abstract class AbstractTextAdventure : TextAdventure
     private TextAdventureEngine engine;
     private Room room;
     private List<string> inventory = new List<string>();
+    private bool IsGameOver = false;
+    private bool IsGameWon = false;
 
     public List<string> GetInventory()
     {
@@ -41,28 +45,6 @@ public abstract class AbstractTextAdventure : TextAdventure
         this.engine = engine;
     }
 
-    public abstract string GetStatus();
-
-    public virtual TextAdventure HandleInput(string input)
-    {
-
-        this.Print("\n> " + input + "\n\n");
-
-        if (this.room.GetOptions(this).Contains(input))
-        {
-            return room.HandleInput(this, input);
-        }
-
-        if (input.Equals("look"))
-        {
-            this.DisplayRoom();
-            return this;
-        }
-
-        this.Print("I'm sorry, I don't know how to \"" + input + "\"\n");
-        return this;
-    }
-
     public Room GetRoom()
     {
         return room;
@@ -71,23 +53,6 @@ public abstract class AbstractTextAdventure : TextAdventure
     public void SetRoom(Room room)
     {
         this.room = room;
-    }
-
-    
-
-    public virtual string FormatInventory()
-    {
-        string inventory = "Inventory:\n\n";
-        if (this.inventory.Count == 0)
-        {
-            inventory += " * Empty";
-        }
-
-        foreach (string item in this.GetInventory())
-        {
-            inventory += " * " + item + "\n";
-        }
-        return inventory;
     }
 
     public virtual void DisplayRoom()
@@ -99,13 +64,14 @@ public abstract class AbstractTextAdventure : TextAdventure
 
     public virtual void DisplayRoomName()
     {
+        string roomName = this.room.GetName(this);
         string end = " |";
         string border = "=-";
-        for (int ix = 0; ix < this.room.GetName(this).Length; ix++)
+        for (int ix = 0; ix < roomName.Length; ix++)
         {
             border += ix % 2 == 0 ? "=" : "-";
         }
-        if (this.room.GetName(this).Length % 2 == 1)
+        if (roomName.Length % 2 == 1)
         {
             border += "-=";
         }
@@ -114,7 +80,7 @@ public abstract class AbstractTextAdventure : TextAdventure
             border += "=-=";
             end = "  |";
         }
-        string middle = "| " + this.room.GetName(this) + end;
+        string middle = "| " + roomName + end;
         this.Print("\n" + border + "\n");
         this.Print(middle + "\n");
         this.Print(border + "\n");
@@ -125,8 +91,51 @@ public abstract class AbstractTextAdventure : TextAdventure
         this.Print("\n" + this.room.GetDescription(this) + "\n");
     }
 
-    public virtual void OnStart()
+    public abstract Room OnStart();
+
+    public string GetInput()
     {
-       
+        string result = null;
+        while (engine.input.IsEmpty )
+        {
+            Thread.Sleep(100);
+        }
+        if (!engine.input.TryDequeue(out result))
+        {
+            return GetInput();
+        }
+        return result;
+    }
+
+    public void Run()
+    {
+        this.room = this.OnStart();
+        while (!IsGameOver && !IsGameWon)
+        {
+            DisplayRoom();
+            this.room.HandleInput(this);
+            Sleep(1);
+        }
+    }
+
+    public void GameOver()
+    {
+        this.IsGameOver = true;
+    }
+
+    public void PrintTextFile(string resourceName, float delay)
+    {
+        string data = engine.GetTextFile(resourceName);
+        string[] lines = data.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
+        foreach(string line in lines)
+        {
+            Print(line + "\n", 0);
+            Sleep(delay);
+        }
+    }
+
+    public void GameWon()
+    {
+        this.IsGameWon = true;
     }
 }

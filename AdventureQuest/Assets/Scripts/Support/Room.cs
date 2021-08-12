@@ -21,18 +21,8 @@ public interface Room
     string GetDescription(TextAdventure adventure);
 
     /**
-     * Returns a list of options that the user is allowed to type while in
-     * this room. If the user types anything not in this list, an invalid 
-     * message
-     * will be displayed. 
-     * 
-     * The returned list must not be null and must not be empty.
-     */
-    List<string> GetOptions(TextAdventure adventure);
-
-    /**
      * Given a GameState and userInput, returns the next GameState.
      */
-    TextAdventure HandleInput(TextAdventure adventure, string userInput);
+    TextAdventure HandleInput(TextAdventure adventure);
 
 }

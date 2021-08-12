@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using System;
+using System.Collections.Concurrent;
+using System.Threading;
 
 public class TextAdventureEngine : MonoBehaviour
 {
@@ -8,8 +11,6 @@ public class TextAdventureEngine : MonoBehaviour
     public InputField userInput;
     public ScrollRect textDisplay;
     public Text textDisplayText;
-    public Text inventoryText;
-    public Text gameStateText;
     public TextAdventure adventure;
 
     private Queue<Renderer> toPrint = new Queue<Renderer>();
@@ -19,14 +20,10 @@ public class TextAdventureEngine : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        
+
         this.textDisplayText.text = "";
         this.adventure = Config.GetAdventure();
         this.adventure.SetEngine(this);
-        this.adventure.OnStart();
-        this.adventure.DisplayRoom();
-        // Update the inventory and gamestate display
-        UpdateScreen();
 
         InputField.SubmitEvent se = new InputField.SubmitEvent();
         se.AddListener(HandleUserInput);
@@ -34,7 +31,11 @@ public class TextAdventureEngine : MonoBehaviour
 
         this.userInput.Select();
         this.userInput.ActivateInputField();
+        Thread t = new Thread(new ThreadStart(this.adventure.Run));
+        t.Start();
     }
+
+    public ConcurrentQueue<string> input = new ConcurrentQueue<string>();
 
 
     private void HandleUserInput(string message)
@@ -42,30 +43,16 @@ public class TextAdventureEngine : MonoBehaviour
         this.userInput.text = "";
         this.userInput.Select();
         this.userInput.ActivateInputField();
-
-        if (message.Equals(""))
+        this.input.Enqueue(message);
+        if (message.Trim().Equals(""))
         {
             return;
         }
+        this.adventure.Print("\n\n> " + message + "\n\n");
 
-        Room r = this.adventure.GetRoom();
-        this.adventure = this.adventure.HandleInput(message);
-
-        // If we are in a new room, display the room
-        if (r != this.adventure.GetRoom())
-        {
-            this.adventure.DisplayRoom();
-        }
-        
     }
 
-    private void UpdateScreen()
-    {
-        this.inventoryText.text = this.adventure.FormatInventory();
-        this.gameStateText.text = adventure.GetStatus();
-    }
-
-    private void FixedUpdate()
+    private void Update()
     {
         // Keep the Next Render counter up to date
         if (Time.time > this.nextRender)
@@ -73,24 +60,28 @@ public class TextAdventureEngine : MonoBehaviour
             this.nextRender = Time.time;
         }
 
-        // If there is no work to be done
-        if(toPrint.Count == 0)
-        { 
-            // Update the inventory and gamestate display
-            UpdateScreen();
-            return;
-        }
-
         // If there is work to be done, check to see if we should print the
         // next character. Print all of the characters that should be printed
-        while(toPrint.Count > 0 && toPrint.Peek().renderAt < Time.time)
+        while (toPrint.Count > 0 && toPrint.Peek().renderAt < Time.time)
         {
             toPrint.Dequeue().Render(this);
         }
 
         //Scroll to the bottom of the view
         textDisplay.verticalNormalizedPosition = 0;
-        
+
+        //If the assetQueue is not empty, try to load the asset
+        if (!assetQueue.IsEmpty) {
+            string key = null;
+            assetQueue.TryDequeue(out key);
+            if (key != null)
+            {
+                TextAsset text = (TextAsset)Resources.Load(key);
+                string result = text == null ? $"COULD NOT READ: {key}" : text.text;
+                textAssets.Add(key, result);
+            }
+        }
+
     }
 
     public void Print(string message)
@@ -127,5 +118,25 @@ public class TextAdventureEngine : MonoBehaviour
         {
             engine.textDisplayText.text += c;
         }
+    }
+
+    private IDictionary<string, string> textAssets = new ConcurrentDictionary<string, string>();
+    private ConcurrentQueue<string> assetQueue = new ConcurrentQueue<string>();
+
+    internal string GetTextFile(string resourceName)
+    {
+        // If the key has not been loaded, enqueue it to be loaded
+        if (!textAssets.ContainsKey(resourceName))
+        {
+            assetQueue.Enqueue(resourceName);
+        }
+
+        // Wait until the key is loaded
+        while (!textAssets.ContainsKey(resourceName))
+        {
+            Thread.Sleep(100);
+        }
+
+        return textAssets[resourceName];
     }
 }
