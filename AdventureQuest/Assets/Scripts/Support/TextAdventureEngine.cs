@@ -71,7 +71,8 @@ public class TextAdventureEngine : MonoBehaviour
         textDisplay.verticalNormalizedPosition = 0;
 
         //If the assetQueue is not empty, try to load the asset
-        if (!assetQueue.IsEmpty) {
+        if (!assetQueue.IsEmpty)
+        {
             string key = null;
             assetQueue.TryDequeue(out key);
             if (key != null)

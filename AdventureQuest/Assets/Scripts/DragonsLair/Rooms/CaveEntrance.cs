@@ -28,11 +28,13 @@ their gold. Dare you [enter] the cave in search of riches? Or would you rather
                 adventure.Print("You enter the cave.\n");
                 DragonsLairAdventure _adventure = (DragonsLairAdventure)adventure;
                 return _adventure.MouthOfCave;
-            } else if (input.Equals("run"))
+            }
+            else if (input.Equals("run"))
             {
                 adventure.Print("Scared of the dragon, you run home to your bed where fall asleep.\n");
                 adventure.GameOver();
-            } else
+            }
+            else
             {
                 adventure.Print("Invalid command!");
             }

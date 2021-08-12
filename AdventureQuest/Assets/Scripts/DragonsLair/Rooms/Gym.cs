@@ -28,10 +28,12 @@ On the far wall is an [elevator].";
                 cave.Strength = cave.Strength + 6;
                 cave.Sleep(1);
                 cave.Print($"Your strength is now {cave.Strength}\n");
-            } else if (input.Equals("weights") && cave.Strength >= 10)
+            }
+            else if (input.Equals("weights") && cave.Strength >= 10)
             {
                 cave.Print("You're feeling pretty strong already, maybe you could go lift some boulders!\n");
-            } else if (input.Equals("elevator"))
+            }
+            else if (input.Equals("elevator"))
             {
                 cave.Print("You enter the elevator and begin to ascend.");
                 cave.Sleep(1);
@@ -41,7 +43,8 @@ On the far wall is an [elevator].";
                 cave.Sleep(1);
                 cave.Print("The door opens and you step out into the cave.\n");
                 return cave.Tunnel;
-            } else
+            }
+            else
             {
                 cave.Print("Invalid command!\n");
             }

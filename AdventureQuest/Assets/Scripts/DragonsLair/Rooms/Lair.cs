@@ -23,10 +23,11 @@ dragon. If you could [slay] it, you would be a hero!";
         {
             string input = adventure.GetInput().ToLower();
             DragonsLairAdventure cave = (DragonsLairAdventure)adventure;
-            if (input.Equals("back")) {
+            if (input.Equals("back"))
+            {
                 cave.Print("You head back the way you came.\n");
                 return cave.Snoring;
-            } 
+            }
             else if (input.Equals("wake"))
             {
                 cave.Print("You wake the dragon...\n");
@@ -35,7 +36,7 @@ dragon. If you could [slay] it, you would be a hero!";
 disdain and smiles crookedly before devouring you. The dragon lets out a
 satisfying belch before closing its eyes and drifting back to sleep.");
                 cave.GameOver();
-            } 
+            }
             else if (input.Equals("slay") && cave.HasSword)
             {
                 cave.Print("You draw your sword to slay the dragon.\n");
@@ -54,7 +55,7 @@ disdain and smiles crookedly before devouring you. The dragon lets out a
 satisfying belch before closing its eyes and drifting back to sleep.");
                 cave.GameOver();
             }
-            else 
+            else
             {
                 cave.Print("Invalid command!\n");
             }

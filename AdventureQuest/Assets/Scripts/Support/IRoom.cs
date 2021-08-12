@@ -38,7 +38,7 @@ public interface IRoom
     /// <param name="adventure">The <c>TextAdventure</c> containing the state of
     ///     the adventure</param>
     /// <return>The room the player should be in next</return>
-    
+
     IRoom HandleInput(ITextAdventure adventure);
 
 }

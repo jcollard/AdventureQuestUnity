@@ -27,15 +27,18 @@ and the other leads to the [right]. You can also see the [entrance] of the cave.
             {
                 adventure.Print("You take the path to the right.\n");
                 return cave.Tunnel;
-            } else if (input.Equals("left"))
+            }
+            else if (input.Equals("left"))
             {
                 adventure.Print("You take the path to the left.\n");
                 return cave.DeadEnd;
-            } else if (input.Equals("entrance"))
+            }
+            else if (input.Equals("entrance"))
             {
                 adventure.Print("On second thought, you return to the entrance.\n");
                 return cave.CaveEntrance;
-            } else
+            }
+            else
             {
                 adventure.Print("Invalid Command!\n");
             }

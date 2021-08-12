@@ -113,7 +113,7 @@ public abstract class AbstractTextAdventure : ITextAdventure
     public string GetInput()
     {
         string result = null;
-        while (engine.input.IsEmpty )
+        while (engine.input.IsEmpty)
         {
             Thread.Sleep(100);
         }
@@ -152,7 +152,7 @@ public abstract class AbstractTextAdventure : ITextAdventure
     {
         string data = engine.GetTextFile(resourceName);
         string[] lines = data.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
-        foreach(string line in lines)
+        foreach (string line in lines)
         {
             Print(line + "\n", 0);
             Sleep(delay);
@@ -165,9 +165,16 @@ public abstract class AbstractTextAdventure : ITextAdventure
         this.IsGameWon = true;
     }
 
+    /// <inheritdoc/>
     public abstract IRoom OnStart();
+
+    /// <inheritdoc/>
     public abstract string GetName();
+
+    /// <inheritdoc/>
     public abstract string GetAuthor();
+
+    /// <inheritdoc/>
     public abstract string GetDescription();
 
 }

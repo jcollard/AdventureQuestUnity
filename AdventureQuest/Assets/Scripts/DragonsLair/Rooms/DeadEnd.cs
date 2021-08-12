@@ -21,27 +21,31 @@ the mouth of the cave.";
         {
             string input = adventure.GetInput().ToLower();
             DragonsLairAdventure cave = (DragonsLairAdventure)adventure;
-            if(input.Equals("boulder") && cave.Strength < 10)
+            if (input.Equals("boulder") && cave.Strength < 10)
             {
                 cave.Print("You try to lift the boulder but you're too weak!\n");
-            } else if (input.Equals("boulder") && cave.Strength >= 10)
+            }
+            else if (input.Equals("boulder") && cave.Strength >= 10)
             {
                 cave.Print("You lift the boulder with ease!\n");
                 if (cave.HasKey)
                 {
                     cave.Print("Now you're just showing off.\n");
-                } else
+                }
+                else
                 {
                     cave.Print("Beneath the boulder, you find a key.\n");
                     cave.Print("You take the key and place it in your pocket!\n");
                     cave.HasKey = true;
                 }
 
-            } else if (input.Equals("back"))
+            }
+            else if (input.Equals("back"))
             {
                 cave.Print("You return to the Mouth of the Cave\n");
                 return cave.MouthOfCave;
-            } else
+            }
+            else
             {
                 cave.Print("Invalid command!\n");
             }

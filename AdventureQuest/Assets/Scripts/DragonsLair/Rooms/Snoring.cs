@@ -28,7 +28,7 @@ cave.";
             {
                 cave.Print("You slowly approach the snoring...\n");
                 return cave.DragonLair;
-            } 
+            }
             else if (input.Equals("chest") && cave.HasKey)
             {
 
@@ -40,19 +40,23 @@ cave.";
                     cave.Sleep(1);
                     cave.Print("Inside, you find a beautiful sword!\n");
                     cave.HasSword = true;
-                } else
+                }
+                else
                 {
                     cave.Print("You search the chest again, but it is empty.\n");
                 }
 
-            } else if (input.Equals("chest") && !cave.HasKey)
+            }
+            else if (input.Equals("chest") && !cave.HasKey)
             {
                 cave.Print("The chest is locked!\n");
-            } else if (input.Equals("tunnel"))
+            }
+            else if (input.Equals("tunnel"))
             {
                 cave.Print("You head back toward the mouth of the cave.\n");
                 return cave.Tunnel;
-            } else
+            }
+            else
             {
                 cave.Print("Invalid command!\n");
             }

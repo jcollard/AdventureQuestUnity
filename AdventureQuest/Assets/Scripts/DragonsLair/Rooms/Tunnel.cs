@@ -40,15 +40,18 @@ continues.";
                 cave.Sleep(1);
                 cave.Print("The elevator door opens and you exit.\n");
                 return cave.Gym;
-            } else if (input.Equals("tunnel"))
+            }
+            else if (input.Equals("tunnel"))
             {
                 cave.Print("You continue down the tunnel.\n");
                 return cave.Snoring;
-            } else if (input.Equals("mouth"))
+            }
+            else if (input.Equals("mouth"))
             {
                 cave.Print("You return to the mouth of the cave.\n");
                 return cave.MouthOfCave;
-            } else
+            }
+            else
             {
                 adventure.Print("Invalid command!\n");
             }

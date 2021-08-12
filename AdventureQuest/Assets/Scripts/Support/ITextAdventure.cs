@@ -98,8 +98,8 @@ public interface ITextAdventure
     /// Runs the Adventure.
     /// </summary>
     void Run();
-    
-    
-    
+
+
+
 
 }
