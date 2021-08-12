@@ -2,26 +2,26 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace Assets.CaveOfAdventure
+namespace DragonsLair
 {
-    public class Gym : Room
+    public class Gym : IRoom
     {
-        public string GetDescription(TextAdventure adventure)
+        public string GetDescription(ITextAdventure adventure)
         {
             return @"You are in a gym filled with exercise equipment. A sign on the wall reads, 'Ye
 Olde Gym'. It appears all of the equipment is in use except for some [weights].
 On the far wall is an [elevator].";
         }
 
-        public string GetName(TextAdventure adventure)
+        public string GetName(ITextAdventure adventure)
         {
             return "Ye Olde Gym";
         }
 
-        public TextAdventure HandleInput(TextAdventure adventure)
+        public IRoom HandleInput(ITextAdventure adventure)
         {
             string input = adventure.GetInput().ToLower();
-            Cave cave = (Cave)adventure;
+            DragonsLairAdventure cave = (DragonsLairAdventure)adventure;
             if (input.Equals("weights") && cave.Strength < 10)
             {
                 cave.Print("You pick up the weights and do a rep!\n");
@@ -40,13 +40,13 @@ On the far wall is an [elevator].";
                 cave.Print(".\n");
                 cave.Sleep(1);
                 cave.Print("The door opens and you step out into the cave.\n");
-                cave.SetRoom(cave.Tunnel);
+                return cave.Tunnel;
             } else
             {
                 cave.Print("Invalid command!\n");
             }
 
-            return adventure;
+            return this;
         }
     }
 }

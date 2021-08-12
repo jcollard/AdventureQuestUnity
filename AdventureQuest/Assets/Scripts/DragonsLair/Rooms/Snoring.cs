@@ -2,11 +2,11 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace Assets.CaveOfAdventure
+namespace DragonsLair
 {
-    public class Snoring : Room
+    public class Snoring : IRoom
     {
-        public string GetDescription(TextAdventure adventure)
+        public string GetDescription(ITextAdventure adventure)
         {
             return @"You are in a large natural room within a cave. It is unnaturally warm here and
 you can hear what sounds like a giant creature [snoring] around a corner. In the
@@ -14,20 +14,20 @@ center of the room is a [chest]. A [tunnel] leads back toward the mouth of the
 cave.";
         }
 
-        public string GetName(TextAdventure adventure)
+        public string GetName(ITextAdventure adventure)
         {
             return "A Large Natural Cave";
         }
 
-        public TextAdventure HandleInput(TextAdventure adventure)
+        public IRoom HandleInput(ITextAdventure adventure)
         {
             string input = adventure.GetInput().ToLower();
-            Cave cave = (Cave)adventure;
+            DragonsLairAdventure cave = (DragonsLairAdventure)adventure;
 
             if (input.Equals("snoring"))
             {
                 cave.Print("You slowly approach the snoring...\n");
-                cave.SetRoom(cave.DragonLair);
+                return cave.DragonLair;
             } 
             else if (input.Equals("chest") && cave.HasKey)
             {
@@ -51,13 +51,13 @@ cave.";
             } else if (input.Equals("tunnel"))
             {
                 cave.Print("You head back toward the mouth of the cave.\n");
-                cave.SetRoom(cave.Tunnel);
+                return cave.Tunnel;
             } else
             {
                 cave.Print("Invalid command!\n");
             }
 
-            return adventure;
+            return this;
         }
     }
 }

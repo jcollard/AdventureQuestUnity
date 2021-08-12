@@ -1,27 +1,45 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading;
-using UnityEngine;
 
-public abstract class AbstractTextAdventure : TextAdventure
+/// <summary>
+/// An AbstractTextAdventure provides default implementations of almost all of
+/// the methods necessary to create a Text Adventure game. To extend this class,
+/// you only need to implement the <a cref="ITextAdventure.OnStart">OnStart</a>,
+/// <a cref="ITextAdventure.GetName">GetName</a>,
+/// <a cref="ITextAdventure.GetAuthor">GetAuthor</a>, and
+/// <a cref="ITextAdventure.GetDescription">GetDescription</a> methods. An
+/// example adventure has been provided: <see cref="DragonsLairAdventure"/>
+/// </summary>
+public abstract class AbstractTextAdventure : ITextAdventure
 {
 
+    /// <summary>
+    /// The Engine to use for input and output
+    /// </summary>
     private TextAdventureEngine engine;
-    private Room room;
-    private List<string> inventory = new List<string>();
+
+    /// <summary>
+    /// The current Room
+    /// </summary>
+    private IRoom room;
+
+    /// <summary>
+    /// If the player has lost the game
+    /// </summary>
     private bool IsGameOver = false;
+
+    /// <summary>
+    /// If the player has won the game
+    /// </summary>
     private bool IsGameWon = false;
 
-    public List<string> GetInventory()
-    {
-        return inventory;
-    }
-
+    /// <inheritdoc/>
     public void Print(string message)
     {
         this.Print(message, 0.01f);
     }
 
+    /// <inheritdoc/>
     public void Print(string message, float delay)
     {
         if (engine == null)
@@ -31,6 +49,7 @@ public abstract class AbstractTextAdventure : TextAdventure
         engine.Print(message, delay);
     }
 
+    /// <inheritdoc/>
     public void Sleep(float seconds)
     {
         if (engine == null)
@@ -40,29 +59,27 @@ public abstract class AbstractTextAdventure : TextAdventure
         engine.Sleep(seconds);
     }
 
+    /// <inheritdoc/>
     public void SetEngine(TextAdventureEngine engine)
     {
         this.engine = engine;
     }
 
-    public Room GetRoom()
+    /// <inheritdoc/>
+    public IRoom GetRoom()
     {
         return room;
     }
 
-    public void SetRoom(Room room)
-    {
-        this.room = room;
-    }
-
-    public virtual void DisplayRoom()
+    /// <inheritdoc/>
+    public void DisplayRoom()
     {
         DisplayRoomName();
         DisplayDescription();
     }
 
-
-    public virtual void DisplayRoomName()
+    /// <inheritdoc/>
+    public void DisplayRoomName()
     {
         string roomName = this.room.GetName(this);
         string end = " |";
@@ -86,13 +103,13 @@ public abstract class AbstractTextAdventure : TextAdventure
         this.Print(border + "\n");
     }
 
-    public virtual void DisplayDescription()
+    /// <inheritdoc/>
+    public void DisplayDescription()
     {
         this.Print("\n" + this.room.GetDescription(this) + "\n");
     }
 
-    public abstract Room OnStart();
-
+    /// <inheritdoc/>
     public string GetInput()
     {
         string result = null;
@@ -107,22 +124,30 @@ public abstract class AbstractTextAdventure : TextAdventure
         return result;
     }
 
+    /// <inheritdoc/>
     public void Run()
     {
         this.room = this.OnStart();
         while (!IsGameOver && !IsGameWon)
         {
+            if (this.room == null)
+            {
+                Print("ERROR: The current room is null!");
+                break;
+            }
             DisplayRoom();
-            this.room.HandleInput(this);
+            this.room = this.room.HandleInput(this);
             Sleep(1);
         }
     }
 
+    /// <inheritdoc/>
     public void GameOver()
     {
         this.IsGameOver = true;
     }
 
+    /// <inheritdoc/>
     public void PrintTextFile(string resourceName, float delay)
     {
         string data = engine.GetTextFile(resourceName);
@@ -134,8 +159,15 @@ public abstract class AbstractTextAdventure : TextAdventure
         }
     }
 
+    /// <inheritdoc/>
     public void GameWon()
     {
         this.IsGameWon = true;
     }
+
+    public abstract IRoom OnStart();
+    public abstract string GetName();
+    public abstract string GetAuthor();
+    public abstract string GetDescription();
+
 }

@@ -2,8 +2,8 @@
 
 public class Config
 {
-    public static TextAdventure GetAdventure()
+    public static ITextAdventure GetAdventure()
     {
-        return new Cave();
+        return new DragonsLair.DragonsLairAdventure();
     }
 }

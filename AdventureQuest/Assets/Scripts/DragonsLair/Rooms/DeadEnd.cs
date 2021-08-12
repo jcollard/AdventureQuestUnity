@@ -2,25 +2,25 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace Assets.CaveOfAdventure
+namespace DragonsLair
 {
-    public class DeadEnd : Room
+    public class DeadEnd : IRoom
     {
-        public string GetDescription(TextAdventure adventure)
+        public string GetDescription(ITextAdventure adventure)
         {
             return @"You are at a dead end. There is a large [boulder] here. A path leads [back] to
 the mouth of the cave.";
         }
 
-        public string GetName(TextAdventure adventure)
+        public string GetName(ITextAdventure adventure)
         {
             return "A Dead End";
         }
 
-        public TextAdventure HandleInput(TextAdventure adventure)
+        public IRoom HandleInput(ITextAdventure adventure)
         {
             string input = adventure.GetInput().ToLower();
-            Cave cave = (Cave)adventure;
+            DragonsLairAdventure cave = (DragonsLairAdventure)adventure;
             if(input.Equals("boulder") && cave.Strength < 10)
             {
                 cave.Print("You try to lift the boulder but you're too weak!\n");
@@ -40,13 +40,13 @@ the mouth of the cave.";
             } else if (input.Equals("back"))
             {
                 cave.Print("You return to the Mouth of the Cave\n");
-                cave.SetRoom(cave.MouthOfCave);
+                return cave.MouthOfCave;
             } else
             {
                 cave.Print("Invalid command!\n");
             }
 
-            return adventure;
+            return this;
         }
     }
 }

@@ -11,7 +11,7 @@ public class TextAdventureEngine : MonoBehaviour
     public InputField userInput;
     public ScrollRect textDisplay;
     public Text textDisplayText;
-    public TextAdventure adventure;
+    public ITextAdventure adventure;
 
     private Queue<Renderer> toPrint = new Queue<Renderer>();
     private float nextRender = 0;

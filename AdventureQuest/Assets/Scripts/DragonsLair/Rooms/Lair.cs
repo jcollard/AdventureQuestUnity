@@ -2,11 +2,11 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace Assets.CaveOfAdventure
+namespace DragonsLair
 {
-    public class DragonLair : Room
+    public class Lair : IRoom
     {
-        public string GetDescription(TextAdventure adventure)
+        public string GetDescription(ITextAdventure adventure)
         {
             return @"You are standing inside of a dragon's lair! The air is hot and dank. A tunnel
 leads [back] the way you came. In the center of the room is a massive pile of
@@ -14,18 +14,18 @@ gold atop which a massive red dragon slumbers. Probably best not to [wake] the
 dragon. If you could [slay] it, you would be a hero!";
         }
 
-        public string GetName(TextAdventure adventure)
+        public string GetName(ITextAdventure adventure)
         {
             return "The Dragon's Lair";
         }
 
-        public TextAdventure HandleInput(TextAdventure adventure)
+        public IRoom HandleInput(ITextAdventure adventure)
         {
             string input = adventure.GetInput().ToLower();
-            Cave cave = (Cave)adventure;
+            DragonsLairAdventure cave = (DragonsLairAdventure)adventure;
             if (input.Equals("back")) {
                 cave.Print("You head back the way you came.\n");
-                cave.SetRoom(cave.Snoring);
+                return cave.Snoring;
             } 
             else if (input.Equals("wake"))
             {
@@ -59,7 +59,7 @@ satisfying belch before closing its eyes and drifting back to sleep.");
                 cave.Print("Invalid command!\n");
             }
 
-            return adventure;
+            return this;
         }
     }
 }

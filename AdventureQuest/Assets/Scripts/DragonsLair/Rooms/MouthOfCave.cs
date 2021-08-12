@@ -2,45 +2,45 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace Assets.CaveOfAdventure
+namespace DragonsLair
 {
-    public class MouthOfCave : Room
+    public class MouthOfCave : IRoom
     {
-        public string GetDescription(TextAdventure adventure)
+        public string GetDescription(ITextAdventure adventure)
         {
             return @"You are at the mouth of the cave. It is dark and damp. Luckily, you brought your
 trusty flashlight with you! You can see two paths here. One leads to the [left]
 and the other leads to the [right]. You can also see the [entrance] of the cave.";
         }
 
-        public string GetName(TextAdventure adventure)
+        public string GetName(ITextAdventure adventure)
         {
             return "Mouth of the Cave";
         }
 
-        public TextAdventure HandleInput(TextAdventure adventure)
+        public IRoom HandleInput(ITextAdventure adventure)
         {
-            Cave cave = (Cave)adventure;
+            DragonsLairAdventure cave = (DragonsLairAdventure)adventure;
             string input = adventure.GetInput().ToLower();
 
             if (input.Equals("right"))
             {
                 adventure.Print("You take the path to the right.\n");
-                cave.SetRoom(cave.Tunnel);
+                return cave.Tunnel;
             } else if (input.Equals("left"))
             {
                 adventure.Print("You take the path to the left.\n");
-                cave.SetRoom(cave.DeadEnd);
+                return cave.DeadEnd;
             } else if (input.Equals("entrance"))
             {
                 adventure.Print("On second thought, you return to the entrance.\n");
-                cave.SetRoom(cave.CaveEntrance);
+                return cave.CaveEntrance;
             } else
             {
                 adventure.Print("Invalid Command!\n");
             }
 
-            return adventure;
+            return this;
         }
     }
 }
