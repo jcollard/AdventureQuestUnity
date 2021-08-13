@@ -504,7 +504,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "+-=-=-=-=-=-=-=-=-=-+\n| Dungeon Entrance  |\n+-=-=-=-=-=-=-=-=-=-+\n   
+  m_Text: "\n+-=-=-=-=-=-=-=-=-=-+\n| Dungeon Entrance  |\n+-=-=-=-=-=-=-=-=-=-+\n   
     .       ..       .\n    |\\      ||      /|\n    | \\     ||     / |\n    | 
     \\    ||    /  |\n    |  :\\___JL___/   |\n    |  :|##XLJ: :|   |\n    '\\ :|###||:
     X|  /'\n      \\:|###||:X#| /\n       |==========|\n        |##XX:: :|\n       

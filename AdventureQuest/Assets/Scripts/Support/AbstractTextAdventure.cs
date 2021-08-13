@@ -16,7 +16,7 @@ public abstract class AbstractTextAdventure : ITextAdventure
     /// <summary>
     /// The Engine to use for input and output
     /// </summary>
-    private TextAdventureEngine engine;
+    private IEngine engine;
 
     /// <summary>
     /// The current Room
@@ -60,7 +60,7 @@ public abstract class AbstractTextAdventure : ITextAdventure
     }
 
     /// <inheritdoc/>
-    public void SetEngine(TextAdventureEngine engine)
+    public void SetEngine(IEngine engine)
     {
         this.engine = engine;
     }
@@ -113,11 +113,11 @@ public abstract class AbstractTextAdventure : ITextAdventure
     public string GetInput()
     {
         string result = null;
-        while (engine.input.IsEmpty)
+        while (engine.GetInput().IsEmpty)
         {
             Thread.Sleep(100);
         }
-        if (!engine.input.TryDequeue(out result))
+        if (!engine.GetInput().TryDequeue(out result))
         {
             return GetInput();
         }

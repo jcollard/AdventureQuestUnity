@@ -71,10 +71,10 @@ public interface ITextAdventure
     IRoom GetRoom();
 
     /// <summary>
-    /// Specifies the <a cref="TextAdventureEngine">TextAdventureEngine</a> that
+    /// Specifies the <a cref="IEngine">Engine</a> that
     /// should be used to for input and output.
     /// </summary>
-    void SetEngine(TextAdventureEngine engine);
+    void SetEngine(IEngine engine);
 
     /// <summary>
     /// Called when the player loses the adventure.
