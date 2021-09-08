@@ -35,4 +35,9 @@ public interface IEngine
     ///     character</param>
     public void Print(string message, float delay = 0.01f);
 
+    /// <summary>
+    /// Enqueue's a message to clear the on screen terminal.
+    /// </summary>
+    public void Clear();
+
 }

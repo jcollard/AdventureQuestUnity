@@ -49,4 +49,9 @@ public class TestingEngine : IEngine
         input.Enqueue(userInput);
     }
 
+    /// <inheritdoc/>
+    public void Clear()
+    {
+        Debug.Log("<CLEAR TRIGGERED>");
+    }
 }

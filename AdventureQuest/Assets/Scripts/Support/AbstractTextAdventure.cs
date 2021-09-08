@@ -59,6 +59,15 @@ public abstract class AbstractTextAdventure : ITextAdventure
         engine.Sleep(seconds);
     }
 
+    public void Clear()
+    {
+        if (engine == null)
+        {
+            return;
+        }
+        engine.Clear();
+    }
+
     /// <inheritdoc/>
     public void SetEngine(IEngine engine)
     {
@@ -138,6 +147,24 @@ public abstract class AbstractTextAdventure : ITextAdventure
             DisplayRoom();
             this.room = this.room.HandleInput(this);
             Sleep(1);
+        }
+
+        if (IsGameOver)
+        {
+            Print("\n\nGame Over\n\n");
+            Print("Press enter to restart.");
+            GetInput();
+            Clear();
+            this.Run();
+        } else if (IsGameWon)
+        {
+            Print("\n\n");
+            Print("You won!");
+            Print("\n\n");
+            Print("Press enter to play again.");
+            GetInput();
+            Clear();
+            this.Run();
         }
     }
 

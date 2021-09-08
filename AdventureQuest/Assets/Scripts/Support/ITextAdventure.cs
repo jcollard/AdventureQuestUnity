@@ -54,6 +54,11 @@ public interface ITextAdventure
     void PrintTextFile(string resourceName, float delay);
 
     /// <summary>
+    /// Clears the screen.
+    /// </summary>
+    void Clear();
+
+    /// <summary>
     /// Pause the game for the specified number of seconds.
     /// </summary>
     /// <param name="seconds">The number of seconds to pause</param>

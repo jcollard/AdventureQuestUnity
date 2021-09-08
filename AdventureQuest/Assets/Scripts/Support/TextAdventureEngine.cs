@@ -142,6 +142,12 @@ public class TextAdventureEngine : MonoBehaviour, IEngine
     }
 
     /// <inheritdoc/>
+    public void Clear()
+    {
+        toPrint.Enqueue(new ClearRenderer(this));
+    }
+
+    /// <inheritdoc/>
     public void Sleep(float seconds)
     {
         toPrint.Enqueue(new Renderer("", this, seconds));
@@ -193,10 +199,28 @@ public class TextAdventureEngine : MonoBehaviour, IEngine
             engine.nextRender += delay;
         }
 
-        public void Render(TextAdventureEngine engine)
+        public virtual void Render(TextAdventureEngine engine)
         {
             engine.textDisplayText.text += c;
         }
+    }
+
+    /// <summary>
+    /// A Helper class for clearing the screen.
+    /// </summary>
+    private class ClearRenderer : Renderer
+    {
+
+        public ClearRenderer(TextAdventureEngine engine) : base("", engine)
+        {
+
+        }
+
+        public override void Render(TextAdventureEngine engine)
+        {
+            engine.textDisplayText.text = "";
+        }
+
     }
 
 }
