@@ -112,6 +112,16 @@ public class TextAdventureEngine : MonoBehaviour, IEngine
         while (toPrint.Count > 0 && toPrint.Peek().renderAt < Time.time)
         {
             toPrint.Dequeue().Render(this);
+            if(textDisplayText.text.Split('\n').Length > 100)
+            {
+                string[] lines = textDisplayText.text.Split('\n');
+                string[] newLines = new string[50];
+                for (int ix = newLines.Length - 1, lx = lines.Length - 1; ix >= 0; ix--, lx--)
+                {
+                    newLines[ix] = lines[lx];
+                }
+                textDisplayText.text = String.Join("\n", newLines);
+            }
         }
 
         //Scroll to the bottom of the view
