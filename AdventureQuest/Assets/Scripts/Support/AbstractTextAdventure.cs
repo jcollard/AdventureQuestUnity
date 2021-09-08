@@ -136,6 +136,9 @@ public abstract class AbstractTextAdventure : ITextAdventure
     /// <inheritdoc/>
     public void Run()
     {
+    start:
+        this.IsGameOver = false;
+        this.IsGameWon = false;
         this.room = this.OnStart();
         while (!IsGameOver && !IsGameWon)
         {
@@ -155,8 +158,10 @@ public abstract class AbstractTextAdventure : ITextAdventure
             Print("Press enter to restart.");
             GetInput();
             Clear();
-            this.Run();
-        } else if (IsGameWon)
+            goto start;
+
+        }
+        else if (IsGameWon)
         {
             Print("\n\n");
             Print("You won!");
@@ -164,7 +169,7 @@ public abstract class AbstractTextAdventure : ITextAdventure
             Print("Press enter to play again.");
             GetInput();
             Clear();
-            this.Run();
+            goto start;
         }
     }
 
