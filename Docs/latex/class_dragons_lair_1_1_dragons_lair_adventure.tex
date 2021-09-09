@@ -1,0 +1,142 @@
+\hypertarget{class_dragons_lair_1_1_dragons_lair_adventure}{}\doxysection{Dragons\+Lair.\+Dragons\+Lair\+Adventure Class Reference}
+\label{class_dragons_lair_1_1_dragons_lair_adventure}\index{DragonsLair.DragonsLairAdventure@{DragonsLair.DragonsLairAdventure}}
+
+
+The \mbox{\hyperlink{class_dragons_lair_1_1_dragons_lair_adventure}{Dragons\+Lair\+Adventure}} is an example adventure which demonstrates how to create a Text\+Adventure.  
+
+
+Inheritance diagram for Dragons\+Lair.\+Dragons\+Lair\+Adventure\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_dragons_lair_1_1_dragons_lair_adventure}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+override \mbox{\hyperlink{interface_i_room}{IRoom}} \mbox{\hyperlink{class_dragons_lair_1_1_dragons_lair_adventure_a832760aa3edfe7ddf4c5af11506ece67}{On\+Start}} ()
+\begin{DoxyCompactList}\small\item\em Called before the adventure starts and specifies the starting room. This method should initialize all of the \mbox{\hyperlink{interface_i_room}{IRoom}}\textquotesingle{}s and variables.  \end{DoxyCompactList}\item 
+override string \mbox{\hyperlink{class_dragons_lair_1_1_dragons_lair_adventure_a25583b4c2610254a205a5195ddd3d88d}{Get\+Author}} ()
+\begin{DoxyCompactList}\small\item\em \begin{DoxyReturn}{Returns}
+The author of this Text\+Adventure
+\end{DoxyReturn}
+ \end{DoxyCompactList}\item 
+override string \mbox{\hyperlink{class_dragons_lair_1_1_dragons_lair_adventure_ace65206aaa1f3499da3e6011f0a8c70e}{Get\+Description}} ()
+\begin{DoxyCompactList}\small\item\em \begin{DoxyReturn}{Returns}
+The description of this Text\+Adventure
+\end{DoxyReturn}
+ \end{DoxyCompactList}\item 
+override string \mbox{\hyperlink{class_dragons_lair_1_1_dragons_lair_adventure_aed25fcd00202f3198272fb13a24b365a}{Get\+Name}} ()
+\begin{DoxyCompactList}\small\item\em \begin{DoxyReturn}{Returns}
+The name of this Text\+Adventure
+\end{DoxyReturn}
+ \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_dragons_lair_1_1_dragons_lair_adventure_af051f7786e3fe6cb82c04d07ffdb8f58}\label{class_dragons_lair_1_1_dragons_lair_adventure_af051f7786e3fe6cb82c04d07ffdb8f58}} 
+readonly \mbox{\hyperlink{interface_i_room}{IRoom}} {\bfseries Cave\+Entrance} = new \mbox{\hyperlink{class_dragons_lair_1_1_cave_entrance}{Cave\+Entrance}}()
+\item 
+\mbox{\Hypertarget{class_dragons_lair_1_1_dragons_lair_adventure_a300e1f8a6e34662e261397edaebb9698}\label{class_dragons_lair_1_1_dragons_lair_adventure_a300e1f8a6e34662e261397edaebb9698}} 
+readonly \mbox{\hyperlink{interface_i_room}{IRoom}} {\bfseries Mouth\+Of\+Cave} = new \mbox{\hyperlink{class_dragons_lair_1_1_mouth_of_cave}{Mouth\+Of\+Cave}}()
+\item 
+\mbox{\Hypertarget{class_dragons_lair_1_1_dragons_lair_adventure_a9865b7ffd1a91ab4c0668a3a3494f8bf}\label{class_dragons_lair_1_1_dragons_lair_adventure_a9865b7ffd1a91ab4c0668a3a3494f8bf}} 
+readonly \mbox{\hyperlink{interface_i_room}{IRoom}} {\bfseries Tunnel} = new \mbox{\hyperlink{class_dragons_lair_1_1_tunnel}{Tunnel}}()
+\item 
+\mbox{\Hypertarget{class_dragons_lair_1_1_dragons_lair_adventure_a52a797d5064e9070d68b9098157b7a34}\label{class_dragons_lair_1_1_dragons_lair_adventure_a52a797d5064e9070d68b9098157b7a34}} 
+readonly \mbox{\hyperlink{interface_i_room}{IRoom}} {\bfseries Dead\+End} = new \mbox{\hyperlink{class_dragons_lair_1_1_dead_end}{Dead\+End}}()
+\item 
+\mbox{\Hypertarget{class_dragons_lair_1_1_dragons_lair_adventure_a8eec744bd165258834f4252e0d643c16}\label{class_dragons_lair_1_1_dragons_lair_adventure_a8eec744bd165258834f4252e0d643c16}} 
+readonly \mbox{\hyperlink{interface_i_room}{IRoom}} {\bfseries Gym} = new \mbox{\hyperlink{class_dragons_lair_1_1_gym}{Gym}}()
+\item 
+\mbox{\Hypertarget{class_dragons_lair_1_1_dragons_lair_adventure_a2ac71724eef495261333ed4414ab6d69}\label{class_dragons_lair_1_1_dragons_lair_adventure_a2ac71724eef495261333ed4414ab6d69}} 
+readonly \mbox{\hyperlink{interface_i_room}{IRoom}} {\bfseries Dragon\+Lair} = new \mbox{\hyperlink{class_dragons_lair_1_1_lair}{Lair}}()
+\item 
+\mbox{\Hypertarget{class_dragons_lair_1_1_dragons_lair_adventure_a9401c66fc4ab8c40f17bdfc9ce66203a}\label{class_dragons_lair_1_1_dragons_lair_adventure_a9401c66fc4ab8c40f17bdfc9ce66203a}} 
+readonly \mbox{\hyperlink{interface_i_room}{IRoom}} {\bfseries Snoring} = new \mbox{\hyperlink{class_dragons_lair_1_1_snoring}{Snoring}}()
+\item 
+\mbox{\Hypertarget{class_dragons_lair_1_1_dragons_lair_adventure_a76f15fd4a602a7fca0e0ea6a085dcaba}\label{class_dragons_lair_1_1_dragons_lair_adventure_a76f15fd4a602a7fca0e0ea6a085dcaba}} 
+int {\bfseries Strength} = 0
+\begin{DoxyCompactList}\small\item\em The players Strength. This can be increased by visiting the \mbox{\hyperlink{class_dragons_lair_1_1_gym}{Gym}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_dragons_lair_1_1_dragons_lair_adventure_ace71dc70a19d609925a615fd0481cc6b}\label{class_dragons_lair_1_1_dragons_lair_adventure_ace71dc70a19d609925a615fd0481cc6b}} 
+bool {\bfseries Has\+Key} = false
+\begin{DoxyCompactList}\small\item\em A boolean tracking if the player has a key. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_dragons_lair_1_1_dragons_lair_adventure_a3329e12ac93a98a927aef392c998336e}\label{class_dragons_lair_1_1_dragons_lair_adventure_a3329e12ac93a98a927aef392c998336e}} 
+bool {\bfseries Has\+Sword} = false
+\begin{DoxyCompactList}\small\item\em A boolean tracking if the player has found the sword. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The \mbox{\hyperlink{class_dragons_lair_1_1_dragons_lair_adventure}{Dragons\+Lair\+Adventure}} is an example adventure which demonstrates how to create a Text\+Adventure. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_dragons_lair_1_1_dragons_lair_adventure_a25583b4c2610254a205a5195ddd3d88d}\label{class_dragons_lair_1_1_dragons_lair_adventure_a25583b4c2610254a205a5195ddd3d88d}} 
+\index{DragonsLair.DragonsLairAdventure@{DragonsLair.DragonsLairAdventure}!GetAuthor@{GetAuthor}}
+\index{GetAuthor@{GetAuthor}!DragonsLair.DragonsLairAdventure@{DragonsLair.DragonsLairAdventure}}
+\doxysubsubsection{\texorpdfstring{GetAuthor()}{GetAuthor()}}
+{\footnotesize\ttfamily override string Dragons\+Lair.\+Dragons\+Lair\+Adventure.\+Get\+Author (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+\begin{DoxyReturn}{Returns}
+The author of this Text\+Adventure
+\end{DoxyReturn}
+ 
+
+
+
+Implements \mbox{\hyperlink{class_abstract_text_adventure_a44f10c0e25c229927f47c32fd0904e98}{Abstract\+Text\+Adventure}}.
+
+\mbox{\Hypertarget{class_dragons_lair_1_1_dragons_lair_adventure_ace65206aaa1f3499da3e6011f0a8c70e}\label{class_dragons_lair_1_1_dragons_lair_adventure_ace65206aaa1f3499da3e6011f0a8c70e}} 
+\index{DragonsLair.DragonsLairAdventure@{DragonsLair.DragonsLairAdventure}!GetDescription@{GetDescription}}
+\index{GetDescription@{GetDescription}!DragonsLair.DragonsLairAdventure@{DragonsLair.DragonsLairAdventure}}
+\doxysubsubsection{\texorpdfstring{GetDescription()}{GetDescription()}}
+{\footnotesize\ttfamily override string Dragons\+Lair.\+Dragons\+Lair\+Adventure.\+Get\+Description (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+\begin{DoxyReturn}{Returns}
+The description of this Text\+Adventure
+\end{DoxyReturn}
+ 
+
+
+
+Implements \mbox{\hyperlink{class_abstract_text_adventure_aa1d8dbe03d5f7c2fdf1fa135d2cf0377}{Abstract\+Text\+Adventure}}.
+
+\mbox{\Hypertarget{class_dragons_lair_1_1_dragons_lair_adventure_aed25fcd00202f3198272fb13a24b365a}\label{class_dragons_lair_1_1_dragons_lair_adventure_aed25fcd00202f3198272fb13a24b365a}} 
+\index{DragonsLair.DragonsLairAdventure@{DragonsLair.DragonsLairAdventure}!GetName@{GetName}}
+\index{GetName@{GetName}!DragonsLair.DragonsLairAdventure@{DragonsLair.DragonsLairAdventure}}
+\doxysubsubsection{\texorpdfstring{GetName()}{GetName()}}
+{\footnotesize\ttfamily override string Dragons\+Lair.\+Dragons\+Lair\+Adventure.\+Get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+\begin{DoxyReturn}{Returns}
+The name of this Text\+Adventure
+\end{DoxyReturn}
+ 
+
+
+
+Implements \mbox{\hyperlink{class_abstract_text_adventure_a04477a6f4d50b69489e0ee9f328be8e6}{Abstract\+Text\+Adventure}}.
+
+\mbox{\Hypertarget{class_dragons_lair_1_1_dragons_lair_adventure_a832760aa3edfe7ddf4c5af11506ece67}\label{class_dragons_lair_1_1_dragons_lair_adventure_a832760aa3edfe7ddf4c5af11506ece67}} 
+\index{DragonsLair.DragonsLairAdventure@{DragonsLair.DragonsLairAdventure}!OnStart@{OnStart}}
+\index{OnStart@{OnStart}!DragonsLair.DragonsLairAdventure@{DragonsLair.DragonsLairAdventure}}
+\doxysubsubsection{\texorpdfstring{OnStart()}{OnStart()}}
+{\footnotesize\ttfamily override \mbox{\hyperlink{interface_i_room}{IRoom}} Dragons\+Lair.\+Dragons\+Lair\+Adventure.\+On\+Start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Called before the adventure starts and specifies the starting room. This method should initialize all of the \mbox{\hyperlink{interface_i_room}{IRoom}}\textquotesingle{}s and variables.  
+
+
+
+Implements \mbox{\hyperlink{class_abstract_text_adventure_af9e915048df8ab71d0bab9a722e70ae4}{Abstract\+Text\+Adventure}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Adventure\+Quest/\+Assets/\+Scripts/\+Dragons\+Lair/Dragons\+Lair\+Adventure.\+cs\end{DoxyCompactItemize}

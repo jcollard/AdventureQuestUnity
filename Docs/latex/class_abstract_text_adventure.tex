@@ -1,0 +1,334 @@
+\hypertarget{class_abstract_text_adventure}{}\doxysection{Abstract\+Text\+Adventure Class Reference}
+\label{class_abstract_text_adventure}\index{AbstractTextAdventure@{AbstractTextAdventure}}
+
+
+An \mbox{\hyperlink{class_abstract_text_adventure}{Abstract\+Text\+Adventure}} provides default implementations of almost all of the methods necessary to create a Text Adventure game. To extend this class, you only need to implement the On\+Start, Get\+Name, Get\+Author, and Get\+Description methods. An example adventure has been provided\+: Dragons\+Lair\+Adventure  
+
+
+Inheritance diagram for Abstract\+Text\+Adventure\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_abstract_text_adventure}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_abstract_text_adventure_a561338aa985111fa174a06507fa1df75}{Print}} (string message)
+\begin{DoxyCompactList}\small\item\em Prints the specified message to the console one character at a time using the default delay speed. Note\+: This does not include a newline character. If you would like to print a newline character, you must specify it using \textquotesingle{}~\newline
+\textquotesingle{}.  \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_abstract_text_adventure_a5c72dad91af8da28a67af048177a33db}{Print}} (string message, float delay)
+\begin{DoxyCompactList}\small\item\em Prints the specified message to the console one character at a time using the specified delay in seconds. Note\+: This does not include a newline character. If you would like to print a newline character, you must specify it using \textquotesingle{}~\newline
+\textquotesingle{}.  \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_abstract_text_adventure_a8d8f3434462135f4e629b34cb2bbb7ae}{Sleep}} (float seconds)
+\begin{DoxyCompactList}\small\item\em Pause the game for the specified number of seconds.  \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_abstract_text_adventure_ab48b728b619c01540da03c2023f42d53}{Clear}} ()
+\begin{DoxyCompactList}\small\item\em Clears the screen. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_abstract_text_adventure_a3cdb243ca4f192c351fa318ea97a72ac}{Set\+Engine}} (\mbox{\hyperlink{interface_i_engine}{IEngine}} engine)
+\begin{DoxyCompactList}\small\item\em Specifies the Engine that should be used to for input and output.  \end{DoxyCompactList}\item 
+\mbox{\hyperlink{interface_i_room}{IRoom}} \mbox{\hyperlink{class_abstract_text_adventure_acaf2d20545a0fda26e9fa6264ac8a429}{Get\+Room}} ()
+\begin{DoxyCompactList}\small\item\em \begin{DoxyReturn}{Returns}
+The current \mbox{\hyperlink{interface_i_room}{IRoom}} that the player is in. 
+\end{DoxyReturn}
+ \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_abstract_text_adventure_a175a104dbe25b9b4d070cfdbeb9eaf81}\label{class_abstract_text_adventure_a175a104dbe25b9b4d070cfdbeb9eaf81}} 
+void {\bfseries Display\+Room} ()
+\item 
+\mbox{\Hypertarget{class_abstract_text_adventure_ac3a4ba289d0ac102963e12ea4ba35b1a}\label{class_abstract_text_adventure_ac3a4ba289d0ac102963e12ea4ba35b1a}} 
+void {\bfseries Display\+Room\+Name} ()
+\item 
+\mbox{\Hypertarget{class_abstract_text_adventure_a76679cbabe8023135fdd638f276d72cf}\label{class_abstract_text_adventure_a76679cbabe8023135fdd638f276d72cf}} 
+void {\bfseries Display\+Description} ()
+\item 
+string \mbox{\hyperlink{class_abstract_text_adventure_a7e939b5d5d468b65579f60a32b32705a}{Get\+Input}} ()
+\begin{DoxyCompactList}\small\item\em Reads input from the user and returns it as a string. This method blocks until input is received.  \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_abstract_text_adventure_ad2ccfddf7791411e7e7b0abb2b65a8c6}{Run}} ()
+\begin{DoxyCompactList}\small\item\em Runs the Adventure.  \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_abstract_text_adventure_a7586eb13bc2495685aa89eba73962252}{Game\+Over}} ()
+\begin{DoxyCompactList}\small\item\em Called when the player loses the adventure.  \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_abstract_text_adventure_a164d6c829145e59d44f2f9df56b7f082}{Print\+Text\+File}} (string resource\+Name, float delay)
+\begin{DoxyCompactList}\small\item\em Prints the specified text file to the console one line at a time using the specified delay in seconds. The specified file should be present in the Resources folder of your project. For example\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{interface_i_text_adventure_a99ce39fcbd798210001b52675bc59c96}{PrintTextFile}}(\textcolor{stringliteral}{"{}CaveOfAdventure/title"{}}, 0.1F);}
+
+\end{DoxyCode}
+ The above example, looks for the file \char`\"{}title.\+txt\char`\"{} located in the \char`\"{}\+Resources/\+Cave\+Of\+Adventure\char`\"{} directory.  \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_abstract_text_adventure_aec03044d1335db22b1c196cab9d7761a}{Game\+Won}} ()
+\begin{DoxyCompactList}\small\item\em Called when the player wins the adventure.  \end{DoxyCompactList}\item 
+abstract \mbox{\hyperlink{interface_i_room}{IRoom}} \mbox{\hyperlink{class_abstract_text_adventure_af9e915048df8ab71d0bab9a722e70ae4}{On\+Start}} ()
+\begin{DoxyCompactList}\small\item\em Called before the adventure starts and specifies the starting room. This method should initialize all of the \mbox{\hyperlink{interface_i_room}{IRoom}}\textquotesingle{}s and variables.  \end{DoxyCompactList}\item 
+abstract string \mbox{\hyperlink{class_abstract_text_adventure_a04477a6f4d50b69489e0ee9f328be8e6}{Get\+Name}} ()
+\begin{DoxyCompactList}\small\item\em \begin{DoxyReturn}{Returns}
+The name of this Text\+Adventure
+\end{DoxyReturn}
+ \end{DoxyCompactList}\item 
+abstract string \mbox{\hyperlink{class_abstract_text_adventure_a44f10c0e25c229927f47c32fd0904e98}{Get\+Author}} ()
+\begin{DoxyCompactList}\small\item\em \begin{DoxyReturn}{Returns}
+The author of this Text\+Adventure
+\end{DoxyReturn}
+ \end{DoxyCompactList}\item 
+abstract string \mbox{\hyperlink{class_abstract_text_adventure_aa1d8dbe03d5f7c2fdf1fa135d2cf0377}{Get\+Description}} ()
+\begin{DoxyCompactList}\small\item\em \begin{DoxyReturn}{Returns}
+The description of this Text\+Adventure
+\end{DoxyReturn}
+ \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+An \mbox{\hyperlink{class_abstract_text_adventure}{Abstract\+Text\+Adventure}} provides default implementations of almost all of the methods necessary to create a Text Adventure game. To extend this class, you only need to implement the On\+Start, Get\+Name, Get\+Author, and Get\+Description methods. An example adventure has been provided\+: Dragons\+Lair\+Adventure 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_abstract_text_adventure_ab48b728b619c01540da03c2023f42d53}\label{class_abstract_text_adventure_ab48b728b619c01540da03c2023f42d53}} 
+\index{AbstractTextAdventure@{AbstractTextAdventure}!Clear@{Clear}}
+\index{Clear@{Clear}!AbstractTextAdventure@{AbstractTextAdventure}}
+\doxysubsubsection{\texorpdfstring{Clear()}{Clear()}}
+{\footnotesize\ttfamily void Abstract\+Text\+Adventure.\+Clear (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Clears the screen. 
+
+
+
+Implements \mbox{\hyperlink{interface_i_text_adventure_ace856d840c2f40dbc4b22a5a43e13e8c}{IText\+Adventure}}.
+
+\mbox{\Hypertarget{class_abstract_text_adventure_a7586eb13bc2495685aa89eba73962252}\label{class_abstract_text_adventure_a7586eb13bc2495685aa89eba73962252}} 
+\index{AbstractTextAdventure@{AbstractTextAdventure}!GameOver@{GameOver}}
+\index{GameOver@{GameOver}!AbstractTextAdventure@{AbstractTextAdventure}}
+\doxysubsubsection{\texorpdfstring{GameOver()}{GameOver()}}
+{\footnotesize\ttfamily void Abstract\+Text\+Adventure.\+Game\+Over (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Called when the player loses the adventure.  
+
+
+
+Implements \mbox{\hyperlink{interface_i_text_adventure_a5ee1690a9747a7c99f6f729db26660b0}{IText\+Adventure}}.
+
+\mbox{\Hypertarget{class_abstract_text_adventure_aec03044d1335db22b1c196cab9d7761a}\label{class_abstract_text_adventure_aec03044d1335db22b1c196cab9d7761a}} 
+\index{AbstractTextAdventure@{AbstractTextAdventure}!GameWon@{GameWon}}
+\index{GameWon@{GameWon}!AbstractTextAdventure@{AbstractTextAdventure}}
+\doxysubsubsection{\texorpdfstring{GameWon()}{GameWon()}}
+{\footnotesize\ttfamily void Abstract\+Text\+Adventure.\+Game\+Won (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Called when the player wins the adventure.  
+
+
+
+Implements \mbox{\hyperlink{interface_i_text_adventure_a4ba1a58dad70bb5ac2bf4c6ee05fe3f4}{IText\+Adventure}}.
+
+\mbox{\Hypertarget{class_abstract_text_adventure_a44f10c0e25c229927f47c32fd0904e98}\label{class_abstract_text_adventure_a44f10c0e25c229927f47c32fd0904e98}} 
+\index{AbstractTextAdventure@{AbstractTextAdventure}!GetAuthor@{GetAuthor}}
+\index{GetAuthor@{GetAuthor}!AbstractTextAdventure@{AbstractTextAdventure}}
+\doxysubsubsection{\texorpdfstring{GetAuthor()}{GetAuthor()}}
+{\footnotesize\ttfamily abstract string Abstract\+Text\+Adventure.\+Get\+Author (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+\begin{DoxyReturn}{Returns}
+The author of this Text\+Adventure
+\end{DoxyReturn}
+ 
+
+
+
+Implements \mbox{\hyperlink{interface_i_text_adventure_a4d95c151ebddce96952862dc148748ff}{IText\+Adventure}}.
+
+
+
+Implemented in \mbox{\hyperlink{class_dragons_lair_1_1_dragons_lair_adventure_a25583b4c2610254a205a5195ddd3d88d}{Dragons\+Lair.\+Dragons\+Lair\+Adventure}}.
+
+\mbox{\Hypertarget{class_abstract_text_adventure_aa1d8dbe03d5f7c2fdf1fa135d2cf0377}\label{class_abstract_text_adventure_aa1d8dbe03d5f7c2fdf1fa135d2cf0377}} 
+\index{AbstractTextAdventure@{AbstractTextAdventure}!GetDescription@{GetDescription}}
+\index{GetDescription@{GetDescription}!AbstractTextAdventure@{AbstractTextAdventure}}
+\doxysubsubsection{\texorpdfstring{GetDescription()}{GetDescription()}}
+{\footnotesize\ttfamily abstract string Abstract\+Text\+Adventure.\+Get\+Description (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+\begin{DoxyReturn}{Returns}
+The description of this Text\+Adventure
+\end{DoxyReturn}
+ 
+
+
+
+Implements \mbox{\hyperlink{interface_i_text_adventure_ab06d7f5674b14cb99a4077a4e1474c1b}{IText\+Adventure}}.
+
+
+
+Implemented in \mbox{\hyperlink{class_dragons_lair_1_1_dragons_lair_adventure_ace65206aaa1f3499da3e6011f0a8c70e}{Dragons\+Lair.\+Dragons\+Lair\+Adventure}}.
+
+\mbox{\Hypertarget{class_abstract_text_adventure_a7e939b5d5d468b65579f60a32b32705a}\label{class_abstract_text_adventure_a7e939b5d5d468b65579f60a32b32705a}} 
+\index{AbstractTextAdventure@{AbstractTextAdventure}!GetInput@{GetInput}}
+\index{GetInput@{GetInput}!AbstractTextAdventure@{AbstractTextAdventure}}
+\doxysubsubsection{\texorpdfstring{GetInput()}{GetInput()}}
+{\footnotesize\ttfamily string Abstract\+Text\+Adventure.\+Get\+Input (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Reads input from the user and returns it as a string. This method blocks until input is received.  
+
+
+
+Implements \mbox{\hyperlink{interface_i_text_adventure_ab666ae0bcc22d02ba1947872b090f23d}{IText\+Adventure}}.
+
+\mbox{\Hypertarget{class_abstract_text_adventure_a04477a6f4d50b69489e0ee9f328be8e6}\label{class_abstract_text_adventure_a04477a6f4d50b69489e0ee9f328be8e6}} 
+\index{AbstractTextAdventure@{AbstractTextAdventure}!GetName@{GetName}}
+\index{GetName@{GetName}!AbstractTextAdventure@{AbstractTextAdventure}}
+\doxysubsubsection{\texorpdfstring{GetName()}{GetName()}}
+{\footnotesize\ttfamily abstract string Abstract\+Text\+Adventure.\+Get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+\begin{DoxyReturn}{Returns}
+The name of this Text\+Adventure
+\end{DoxyReturn}
+ 
+
+
+
+Implements \mbox{\hyperlink{interface_i_text_adventure_ace9c400dc0cd552564472e304e9a8f20}{IText\+Adventure}}.
+
+
+
+Implemented in \mbox{\hyperlink{class_dragons_lair_1_1_dragons_lair_adventure_aed25fcd00202f3198272fb13a24b365a}{Dragons\+Lair.\+Dragons\+Lair\+Adventure}}.
+
+\mbox{\Hypertarget{class_abstract_text_adventure_acaf2d20545a0fda26e9fa6264ac8a429}\label{class_abstract_text_adventure_acaf2d20545a0fda26e9fa6264ac8a429}} 
+\index{AbstractTextAdventure@{AbstractTextAdventure}!GetRoom@{GetRoom}}
+\index{GetRoom@{GetRoom}!AbstractTextAdventure@{AbstractTextAdventure}}
+\doxysubsubsection{\texorpdfstring{GetRoom()}{GetRoom()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{interface_i_room}{IRoom}} Abstract\+Text\+Adventure.\+Get\+Room (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\begin{DoxyReturn}{Returns}
+The current \mbox{\hyperlink{interface_i_room}{IRoom}} that the player is in. 
+\end{DoxyReturn}
+ 
+
+
+
+Implements \mbox{\hyperlink{interface_i_text_adventure_a1262b224a63a37654a78585fc4222c27}{IText\+Adventure}}.
+
+\mbox{\Hypertarget{class_abstract_text_adventure_af9e915048df8ab71d0bab9a722e70ae4}\label{class_abstract_text_adventure_af9e915048df8ab71d0bab9a722e70ae4}} 
+\index{AbstractTextAdventure@{AbstractTextAdventure}!OnStart@{OnStart}}
+\index{OnStart@{OnStart}!AbstractTextAdventure@{AbstractTextAdventure}}
+\doxysubsubsection{\texorpdfstring{OnStart()}{OnStart()}}
+{\footnotesize\ttfamily abstract \mbox{\hyperlink{interface_i_room}{IRoom}} Abstract\+Text\+Adventure.\+On\+Start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Called before the adventure starts and specifies the starting room. This method should initialize all of the \mbox{\hyperlink{interface_i_room}{IRoom}}\textquotesingle{}s and variables.  
+
+
+
+Implements \mbox{\hyperlink{interface_i_text_adventure_a067ae177ee415ddac06abd0fd6fe449a}{IText\+Adventure}}.
+
+
+
+Implemented in \mbox{\hyperlink{class_dragons_lair_1_1_dragons_lair_adventure_a832760aa3edfe7ddf4c5af11506ece67}{Dragons\+Lair.\+Dragons\+Lair\+Adventure}}.
+
+\mbox{\Hypertarget{class_abstract_text_adventure_a561338aa985111fa174a06507fa1df75}\label{class_abstract_text_adventure_a561338aa985111fa174a06507fa1df75}} 
+\index{AbstractTextAdventure@{AbstractTextAdventure}!Print@{Print}}
+\index{Print@{Print}!AbstractTextAdventure@{AbstractTextAdventure}}
+\doxysubsubsection{\texorpdfstring{Print()}{Print()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Abstract\+Text\+Adventure.\+Print (\begin{DoxyParamCaption}\item[{string}]{message }\end{DoxyParamCaption})}
+
+
+
+Prints the specified message to the console one character at a time using the default delay speed. Note\+: This does not include a newline character. If you would like to print a newline character, you must specify it using \textquotesingle{}~\newline
+\textquotesingle{}.  
+
+
+
+Implements \mbox{\hyperlink{interface_i_text_adventure_a21a1b1f75d4a146d068809af5a09223e}{IText\+Adventure}}.
+
+\mbox{\Hypertarget{class_abstract_text_adventure_a5c72dad91af8da28a67af048177a33db}\label{class_abstract_text_adventure_a5c72dad91af8da28a67af048177a33db}} 
+\index{AbstractTextAdventure@{AbstractTextAdventure}!Print@{Print}}
+\index{Print@{Print}!AbstractTextAdventure@{AbstractTextAdventure}}
+\doxysubsubsection{\texorpdfstring{Print()}{Print()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Abstract\+Text\+Adventure.\+Print (\begin{DoxyParamCaption}\item[{string}]{message,  }\item[{float}]{delay }\end{DoxyParamCaption})}
+
+
+
+Prints the specified message to the console one character at a time using the specified delay in seconds. Note\+: This does not include a newline character. If you would like to print a newline character, you must specify it using \textquotesingle{}~\newline
+\textquotesingle{}.  
+
+
+
+Implements \mbox{\hyperlink{interface_i_text_adventure_af700a9dd157af1a91ac256e16c1e0a11}{IText\+Adventure}}.
+
+\mbox{\Hypertarget{class_abstract_text_adventure_a164d6c829145e59d44f2f9df56b7f082}\label{class_abstract_text_adventure_a164d6c829145e59d44f2f9df56b7f082}} 
+\index{AbstractTextAdventure@{AbstractTextAdventure}!PrintTextFile@{PrintTextFile}}
+\index{PrintTextFile@{PrintTextFile}!AbstractTextAdventure@{AbstractTextAdventure}}
+\doxysubsubsection{\texorpdfstring{PrintTextFile()}{PrintTextFile()}}
+{\footnotesize\ttfamily void Abstract\+Text\+Adventure.\+Print\+Text\+File (\begin{DoxyParamCaption}\item[{string}]{resource\+Name,  }\item[{float}]{delay }\end{DoxyParamCaption})}
+
+
+
+Prints the specified text file to the console one line at a time using the specified delay in seconds. The specified file should be present in the Resources folder of your project. For example\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{interface_i_text_adventure_a99ce39fcbd798210001b52675bc59c96}{PrintTextFile}}(\textcolor{stringliteral}{"{}CaveOfAdventure/title"{}}, 0.1F);}
+
+\end{DoxyCode}
+ The above example, looks for the file \char`\"{}title.\+txt\char`\"{} located in the \char`\"{}\+Resources/\+Cave\+Of\+Adventure\char`\"{} directory.  
+
+
+
+Implements \mbox{\hyperlink{interface_i_text_adventure_a99ce39fcbd798210001b52675bc59c96}{IText\+Adventure}}.
+
+\mbox{\Hypertarget{class_abstract_text_adventure_ad2ccfddf7791411e7e7b0abb2b65a8c6}\label{class_abstract_text_adventure_ad2ccfddf7791411e7e7b0abb2b65a8c6}} 
+\index{AbstractTextAdventure@{AbstractTextAdventure}!Run@{Run}}
+\index{Run@{Run}!AbstractTextAdventure@{AbstractTextAdventure}}
+\doxysubsubsection{\texorpdfstring{Run()}{Run()}}
+{\footnotesize\ttfamily void Abstract\+Text\+Adventure.\+Run (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Runs the Adventure.  
+
+
+
+Implements \mbox{\hyperlink{interface_i_text_adventure_a7fa8343744c086eb0102f4c6f55f6eed}{IText\+Adventure}}.
+
+\mbox{\Hypertarget{class_abstract_text_adventure_a3cdb243ca4f192c351fa318ea97a72ac}\label{class_abstract_text_adventure_a3cdb243ca4f192c351fa318ea97a72ac}} 
+\index{AbstractTextAdventure@{AbstractTextAdventure}!SetEngine@{SetEngine}}
+\index{SetEngine@{SetEngine}!AbstractTextAdventure@{AbstractTextAdventure}}
+\doxysubsubsection{\texorpdfstring{SetEngine()}{SetEngine()}}
+{\footnotesize\ttfamily void Abstract\+Text\+Adventure.\+Set\+Engine (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{interface_i_engine}{IEngine}}}]{engine }\end{DoxyParamCaption})}
+
+
+
+Specifies the Engine that should be used to for input and output.  
+
+
+
+Implements \mbox{\hyperlink{interface_i_text_adventure_a98401320481c3e77c98f2b8435078272}{IText\+Adventure}}.
+
+\mbox{\Hypertarget{class_abstract_text_adventure_a8d8f3434462135f4e629b34cb2bbb7ae}\label{class_abstract_text_adventure_a8d8f3434462135f4e629b34cb2bbb7ae}} 
+\index{AbstractTextAdventure@{AbstractTextAdventure}!Sleep@{Sleep}}
+\index{Sleep@{Sleep}!AbstractTextAdventure@{AbstractTextAdventure}}
+\doxysubsubsection{\texorpdfstring{Sleep()}{Sleep()}}
+{\footnotesize\ttfamily void Abstract\+Text\+Adventure.\+Sleep (\begin{DoxyParamCaption}\item[{float}]{seconds }\end{DoxyParamCaption})}
+
+
+
+Pause the game for the specified number of seconds.  
+
+
+
+Implements \mbox{\hyperlink{interface_i_text_adventure_a1cd64f1879a6a129e03a03d6e643be96}{IText\+Adventure}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Adventure\+Quest/\+Assets/\+Scripts/\+Support/Abstract\+Text\+Adventure.\+cs\end{DoxyCompactItemize}

@@ -1,0 +1,149 @@
+\hypertarget{interface_i_engine}{}\doxysection{IEngine Interface Reference}
+\label{interface_i_engine}\index{IEngine@{IEngine}}
+
+
+A Room represents a location within a {\ttfamily Text\+Adventure}.  
+
+
+Inheritance diagram for IEngine\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{interface_i_engine}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Concurrent\+Queue$<$ string $>$ \mbox{\hyperlink{interface_i_engine_ad3a61201c55b707f3ebb692700340b20}{Get\+Input}} ()
+\begin{DoxyCompactList}\small\item\em \begin{DoxyReturn}{Returns}
+The User Input Queue
+\end{DoxyReturn}
+\end{DoxyCompactList}\item 
+string \mbox{\hyperlink{interface_i_engine_aefb6aa54a6f185117c9e67050e135865}{Get\+Text\+File}} (string resource\+Name)
+\begin{DoxyCompactList}\small\item\em Loads a Text\+File from the given resource name \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{interface_i_engine_aebea4f23376488319cb12a2222308817}{Sleep}} (float seconds)
+\begin{DoxyCompactList}\small\item\em Enqueue\textquotesingle{}s a pause in the screens output for the specified number of seconds. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{interface_i_engine_a618d57fa35077ba2db05d98b5569fffc}{Print}} (string message, float delay=0.\+01f)
+\begin{DoxyCompactList}\small\item\em Enqueue\textquotesingle{}s a message to be printed to the screen one character at a time specifying the delay between characters. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{interface_i_engine_a3b58acd8dfffd3750229c6976cd85316}{Clear}} ()
+\begin{DoxyCompactList}\small\item\em Enqueue\textquotesingle{}s a message to clear the on screen terminal. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{interface_i_engine_a50328f2e81c34832a363c957a4503994}{List\+Adventures}} ()
+\begin{DoxyCompactList}\small\item\em List all of the adventures registered in the \mbox{\hyperlink{class_config}{Config}} file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A Room represents a location within a {\ttfamily Text\+Adventure}. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{interface_i_engine_a3b58acd8dfffd3750229c6976cd85316}\label{interface_i_engine_a3b58acd8dfffd3750229c6976cd85316}} 
+\index{IEngine@{IEngine}!Clear@{Clear}}
+\index{Clear@{Clear}!IEngine@{IEngine}}
+\doxysubsubsection{\texorpdfstring{Clear()}{Clear()}}
+{\footnotesize\ttfamily void IEngine.\+Clear (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Enqueue\textquotesingle{}s a message to clear the on screen terminal. 
+
+
+
+Implemented in \mbox{\hyperlink{class_text_adventure_engine_a767e9299456334de4d101b6af697611f}{Text\+Adventure\+Engine}}.
+
+\mbox{\Hypertarget{interface_i_engine_ad3a61201c55b707f3ebb692700340b20}\label{interface_i_engine_ad3a61201c55b707f3ebb692700340b20}} 
+\index{IEngine@{IEngine}!GetInput@{GetInput}}
+\index{GetInput@{GetInput}!IEngine@{IEngine}}
+\doxysubsubsection{\texorpdfstring{GetInput()}{GetInput()}}
+{\footnotesize\ttfamily Concurrent\+Queue$<$ string $>$ IEngine.\+Get\+Input (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\begin{DoxyReturn}{Returns}
+The User Input Queue
+\end{DoxyReturn}
+
+
+
+
+Implemented in \mbox{\hyperlink{class_text_adventure_engine_ab78e2d4bbab96e5e805ea3f3cb35e9de}{Text\+Adventure\+Engine}}.
+
+\mbox{\Hypertarget{interface_i_engine_aefb6aa54a6f185117c9e67050e135865}\label{interface_i_engine_aefb6aa54a6f185117c9e67050e135865}} 
+\index{IEngine@{IEngine}!GetTextFile@{GetTextFile}}
+\index{GetTextFile@{GetTextFile}!IEngine@{IEngine}}
+\doxysubsubsection{\texorpdfstring{GetTextFile()}{GetTextFile()}}
+{\footnotesize\ttfamily string IEngine.\+Get\+Text\+File (\begin{DoxyParamCaption}\item[{string}]{resource\+Name }\end{DoxyParamCaption})}
+
+
+
+Loads a Text\+File from the given resource name 
+
+
+\begin{DoxyParams}{Parameters}
+{\em resource\+Name} & The resource name to load\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The resulting text
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{class_text_adventure_engine_abe1811660e1025681f727f347305df25}{Text\+Adventure\+Engine}}.
+
+\mbox{\Hypertarget{interface_i_engine_a50328f2e81c34832a363c957a4503994}\label{interface_i_engine_a50328f2e81c34832a363c957a4503994}} 
+\index{IEngine@{IEngine}!ListAdventures@{ListAdventures}}
+\index{ListAdventures@{ListAdventures}!IEngine@{IEngine}}
+\doxysubsubsection{\texorpdfstring{ListAdventures()}{ListAdventures()}}
+{\footnotesize\ttfamily void IEngine.\+List\+Adventures (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+List all of the adventures registered in the \mbox{\hyperlink{class_config}{Config}} file. 
+
+
+
+Implemented in \mbox{\hyperlink{class_text_adventure_engine_a43b6c68c842993c3ed183d7acebff882}{Text\+Adventure\+Engine}}.
+
+\mbox{\Hypertarget{interface_i_engine_a618d57fa35077ba2db05d98b5569fffc}\label{interface_i_engine_a618d57fa35077ba2db05d98b5569fffc}} 
+\index{IEngine@{IEngine}!Print@{Print}}
+\index{Print@{Print}!IEngine@{IEngine}}
+\doxysubsubsection{\texorpdfstring{Print()}{Print()}}
+{\footnotesize\ttfamily void IEngine.\+Print (\begin{DoxyParamCaption}\item[{string}]{message,  }\item[{float}]{delay = {\ttfamily 0.01f} }\end{DoxyParamCaption})}
+
+
+
+Enqueue\textquotesingle{}s a message to be printed to the screen one character at a time specifying the delay between characters. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em message} & The message to be displayed\\
+\hline
+{\em delay} & The number of seconds to wait to display each character\\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{class_text_adventure_engine_ad06e6fe5fb65bbc1e6e0bf0276d719b6}{Text\+Adventure\+Engine}}.
+
+\mbox{\Hypertarget{interface_i_engine_aebea4f23376488319cb12a2222308817}\label{interface_i_engine_aebea4f23376488319cb12a2222308817}} 
+\index{IEngine@{IEngine}!Sleep@{Sleep}}
+\index{Sleep@{Sleep}!IEngine@{IEngine}}
+\doxysubsubsection{\texorpdfstring{Sleep()}{Sleep()}}
+{\footnotesize\ttfamily void IEngine.\+Sleep (\begin{DoxyParamCaption}\item[{float}]{seconds }\end{DoxyParamCaption})}
+
+
+
+Enqueue\textquotesingle{}s a pause in the screens output for the specified number of seconds. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em seconds} & The number of seconds to wait before rendering the next character\\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{class_text_adventure_engine_ad51e78103b60c8f6be689c55c07398b9}{Text\+Adventure\+Engine}}.
+
+
+
+The documentation for this interface was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Adventure\+Quest/\+Assets/\+Scripts/\+Support/IEngine.\+cs\end{DoxyCompactItemize}
