@@ -14,6 +14,7 @@ public class Config
 
         adventures.Add(new DragonsLair.DragonsLairAdventure());
         //TODO: Add your adventure here!
+        adventures.Add(new DemoAdventure.DemoAdventure());
 
         return adventures;
     }
