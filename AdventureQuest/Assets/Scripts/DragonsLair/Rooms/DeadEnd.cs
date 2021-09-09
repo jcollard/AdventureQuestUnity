@@ -35,6 +35,9 @@ the mouth of the cave.";
                 else
                 {
                     dla.Print("Beneath the boulder, you find a key.\n");
+                    dla.Sleep(1);
+                    dla.PrintTextFile("CaveOfAdventure/key", 0.05F);
+                    dla.Sleep(1);
                     dla.Print("You take the key and place it in your pocket!\n");
                     dla.HasKey = true;
                 }

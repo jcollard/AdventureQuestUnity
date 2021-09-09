@@ -8,6 +8,7 @@ namespace DragonsLair
     {
         public string GetDescription(ITextAdventure adventure)
         {
+            adventure.PrintTextFile("CaveOfAdventure/entrance", 0.05F);
             return @"You stand before a cave. It is well known that an evil dragon slumbers here.
 From time to time, the dragon wakes to terrorize the nearby villages and steal
 their gold. Dare you [enter] the cave in search of riches? Or would you rather

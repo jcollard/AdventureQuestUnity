@@ -31,12 +31,14 @@ cave.";
             }
             else if (input.Equals("chest") && dla.HasKey)
             {
-
+                
                 if (dla.HasSword == false)
                 {
                     dla.Print("The chest is locked.\n");
                     dla.Sleep(1);
                     dla.Print("You take the key from your pocket and unlock the chest.\n");
+                    dla.Sleep(1);
+                    dla.PrintTextFile("CaveOfAdventure/treasure", 0.05F);
                     dla.Sleep(1);
                     dla.Print("Inside, you find a beautiful sword!\n");
                     dla.HasSword = true;

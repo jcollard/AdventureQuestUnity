@@ -32,6 +32,8 @@ dragon. If you could [slay] it, you would be a hero!";
             {
                 dla.Print("You wake the dragon...\n");
                 dla.Sleep(1);
+                dla.PrintTextFile("CaveOfAdventure/dragon", 0.05F);
+                dla.Sleep(1);
                 dla.Print(@"The dragon wakes and snarls, 'Who disturbs my slumber!?' It glares at you with
 disdain and smiles crookedly before devouring you. The dragon lets out a
 satisfying belch before closing its eyes and drifting back to sleep.");
@@ -49,6 +51,8 @@ over. Congratulations, you are a hero!");
             else if (input.Equals("slay") && !dla.HasSword)
             {
                 dla.Print("You attempt to pummel the dragon with your fists!\n");
+                dla.Sleep(1);
+                dla.PrintTextFile("CaveOfAdventure/dragon", 0.05F);
                 dla.Sleep(1);
                 dla.Print(@"The dragon wakes and snarls, 'Who disturbs my slumber!?' It glares at you with
 disdain and smiles crookedly before devouring you. The dragon lets out a

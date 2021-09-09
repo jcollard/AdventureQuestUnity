@@ -21,13 +21,16 @@ namespace DemoAdventure
             HasKey = false;
 
             // TODO: Create a title card
-            PrintTextFile("CaveOfAdventure/title", 0.1F);
+            PrintTextFile("DemoAdventure/title", 0.1F);
             // TODO: Set yourself as the author
             Print("\n                           A text adventure by Joseph Collard");
 
             // Pause for 2 seconds for dramatic effect before beginning in the CaveEntrance
             Sleep(2);
-            Print("\n");
+            Print("\n\n");
+
+            PrintTextFile("ascii/cottage", 0.1F);
+
 
             // This is the room the player will begin in
             return new CottageRoom();
