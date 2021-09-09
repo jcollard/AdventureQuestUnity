@@ -179,6 +179,10 @@ public class TextAdventureEngine : MonoBehaviour, IEngine
 
     }
 
+    /// <summary>
+    /// A helper method to perform a Peek on the concurrent print queue
+    /// </summary>
+    /// <returns>The next Renderer</returns>
     private Renderer DoPeek()
     {
         Renderer result = null;
@@ -194,6 +198,10 @@ public class TextAdventureEngine : MonoBehaviour, IEngine
         return result;
     }
 
+    /// <summary>
+    /// A helper method to perform a Dequeue on the concurrent print queue.
+    /// </summary>
+    /// <returns>The next Renderer</returns>
     private Renderer DoDequeue()
     {
         Renderer result = null;
@@ -209,6 +217,9 @@ public class TextAdventureEngine : MonoBehaviour, IEngine
         return result;
     }
 
+    /// <summary>
+    /// This method is run once per frame.
+    /// </summary>
     private void Update()
     {
         // Keep the Next Render counter up to date
@@ -219,9 +230,6 @@ public class TextAdventureEngine : MonoBehaviour, IEngine
 
         // If there is work to be done, check to see if we should print the
         // next character. Print all of the characters that should be printed
-
-
-
         while (toPrint.Count > 0 && DoPeek().renderAt < Time.time)
         {
             DoDequeue().Render(this);
@@ -253,6 +261,7 @@ public class TextAdventureEngine : MonoBehaviour, IEngine
             }
         }
 
+        // Check to see if we should list the Adventure Menu
         if (readyToListAdventures)
         {
             readyToListAdventures = false;

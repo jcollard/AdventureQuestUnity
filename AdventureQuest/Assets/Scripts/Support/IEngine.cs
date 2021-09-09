@@ -40,5 +40,8 @@ public interface IEngine
     /// </summary>
     public void Clear();
 
+    /// <summary>
+    /// List all of the adventures registered in the Config file.
+    /// </summary>
     public void ListAdventures();
 }
