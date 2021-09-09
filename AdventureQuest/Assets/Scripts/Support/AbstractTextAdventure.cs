@@ -136,7 +136,6 @@ public abstract class AbstractTextAdventure : ITextAdventure
     /// <inheritdoc/>
     public void Run()
     {
-    start:
         this.IsGameOver = false;
         this.IsGameWon = false;
         this.room = this.OnStart();
@@ -155,22 +154,19 @@ public abstract class AbstractTextAdventure : ITextAdventure
         if (IsGameOver)
         {
             Print("\n\nGame Over\n\n");
-            Print("Press enter to restart.");
+            Print("Press enter to exit.");
             GetInput();
-            Clear();
-            goto start;
-
         }
         else if (IsGameWon)
         {
             Print("\n\n");
             Print("You won!");
             Print("\n\n");
-            Print("Press enter to play again.");
+            Print("Press enter to exit.");
             GetInput();
-            Clear();
-            goto start;
         }
+
+        engine.ListAdventures();
     }
 
     /// <inheritdoc/>

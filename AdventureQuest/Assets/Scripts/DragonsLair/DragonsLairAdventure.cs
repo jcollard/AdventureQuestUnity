@@ -56,7 +56,7 @@
 
         public override string GetDescription()
         {
-            return "You stand before a cave. It is well known that an evil dragon slumbers here. From time to time, the dragon wakes to terrorize the nearby villages and steal their gold.Dare you enter the cave in search of riches? Or would you rather run home to the comfort of your warm bed?";
+            return "Are you brave enough to adventure into the Dragon's Lair?";
         }
 
         public override string GetName()

@@ -40,4 +40,5 @@ public interface IEngine
     /// </summary>
     public void Clear();
 
+    public void ListAdventures();
 }

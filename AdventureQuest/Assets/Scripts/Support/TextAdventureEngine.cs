@@ -34,7 +34,7 @@ public class TextAdventureEngine : MonoBehaviour, IEngine
     /// <summary>
     /// A Queue of elements to be printed to the screen.
     /// </summary>
-    private Queue<Renderer> toPrint = new Queue<Renderer>();
+    private ConcurrentQueue<Renderer> toPrint = new ConcurrentQueue<Renderer>();
 
     /// <summary>
     /// The time at which the next character will be rendered
@@ -56,23 +56,103 @@ public class TextAdventureEngine : MonoBehaviour, IEngine
     /// </summary>
     private ConcurrentQueue<string> assetQueue = new ConcurrentQueue<string>();
 
+    private readonly List<ITextAdventure> adventures = Config.GetAdventures();
+
+    private bool readyToListAdventures = false;
+
     // Initialize the GameEngine
     void Start()
     {
         // Clear the text area
         this.textDisplayText.text = "";
 
-        // Load the adventure
-        this.adventure = Config.GetAdventure();
-        this.adventure.SetEngine(this);
+        TextAsset text = (TextAsset)Resources.Load("AdventureQuest");
+        string result = text.text;
+        this.textAssets["AdventureQuest"] = result;
 
+        this.ListAdventures();
+
+    }
+
+    public void ListAdventures()
+    {
+        this.readyToListAdventures = true;
+    }
+
+    public void DoListAdventures()
+    {
+
+        this.Clear();
+        string data = this.textAssets["AdventureQuest"];
+        string[] lines = data.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
+        foreach (string line in lines)
+        {
+            Print(line + "\n", 0);
+            this.Sleep(0.05F);
+        }
+
+
+        for (int ix = 0; ix < this.adventures.Count; ix++)
+        {
+            ITextAdventure adventure = this.adventures[ix];
+            this.Print(ix + ". " + adventure.GetName() + " - " + adventure.GetAuthor() + "\n");
+            this.Print("   " + adventure.GetDescription().PadRight(80, ' ').Substring(0, 80));
+            this.Print("\n\n");
+        }
+
+        this.Print("\nWhich adventure would you like to play?\n");
+
+        // Get input
+        InputField.SubmitEvent se = new InputField.SubmitEvent();
+        se.AddListener(SelectGame);
+        this.userInput.onEndEdit = se;
+        this.userInput.Select();
+        this.userInput.ActivateInputField();
+
+        
+    }
+
+    private void SelectGame(string gameId)
+    {
+        // When a message comes in, clear out the user input box
+        this.userInput.text = "";
+        this.userInput.Select();
+        this.userInput.ActivateInputField();
+
+        try
+        {
+            int ix = Int32.Parse(gameId);
+            if(ix >= 0 && ix < this.adventures.Count)
+            {
+                // Load the adventure
+                this.adventure = this.adventures[ix];
+                this.adventure.SetEngine(this);
+                this.StartAdventure();
+                return;
+            }
+        }
+        catch (FormatException)
+        {
+            
+        }
+
+        this.Print("Invalid option.\n\n");
+        this.Sleep(1F);
+        this.ListAdventures();
+
+    }
+
+    private void StartAdventure()
+    {
         // Register how user input is handled
         InputField.SubmitEvent se = new InputField.SubmitEvent();
+        
         se.AddListener(HandleUserInput);
         this.userInput.onEndEdit = se;
         this.userInput.Select();
         this.userInput.ActivateInputField();
 
+        this.Clear();
         // Start the Adventure
         Thread t = new Thread(new ThreadStart(this.adventure.Run));
         t.Start();
@@ -99,6 +179,36 @@ public class TextAdventureEngine : MonoBehaviour, IEngine
 
     }
 
+    private Renderer DoPeek()
+    {
+        Renderer result = null;
+        while (result == null)
+        {
+            toPrint.TryPeek(out result);
+            if(result == null)
+            {
+                Thread.Sleep(100);
+            }
+        }
+        
+        return result;
+    }
+
+    private Renderer DoDequeue()
+    {
+        Renderer result = null;
+        while (result == null)
+        {
+            toPrint.TryDequeue(out result);
+            if (result == null)
+            {
+                Thread.Sleep(100);
+            }
+        }
+
+        return result;
+    }
+
     private void Update()
     {
         // Keep the Next Render counter up to date
@@ -109,9 +219,12 @@ public class TextAdventureEngine : MonoBehaviour, IEngine
 
         // If there is work to be done, check to see if we should print the
         // next character. Print all of the characters that should be printed
-        while (toPrint.Count > 0 && toPrint.Peek().renderAt < Time.time)
+
+
+
+        while (toPrint.Count > 0 && DoPeek().renderAt < Time.time)
         {
-            toPrint.Dequeue().Render(this);
+            DoDequeue().Render(this);
             if(textDisplayText.text.Split('\n').Length > 100)
             {
                 string[] lines = textDisplayText.text.Split('\n');
@@ -138,6 +251,12 @@ public class TextAdventureEngine : MonoBehaviour, IEngine
                 string result = text == null ? $"COULD NOT READ: {key}" : text.text;
                 textAssets.Add(key, result);
             }
+        }
+
+        if (readyToListAdventures)
+        {
+            readyToListAdventures = false;
+            this.DoListAdventures();
         }
 
     }

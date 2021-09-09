@@ -52,6 +52,11 @@ public class TestingEngine : IEngine
     /// <inheritdoc/>
     public void Clear()
     {
-        Debug.Log("<CLEAR TRIGGERED>");
+        Debug.Log("<TestingEngine.Clear()>");
+    }
+
+    public void ListAdventures()
+    {
+        Debug.Log("<TestingEngine.ListAdventures()>");
     }
 }
