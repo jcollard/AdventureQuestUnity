@@ -56,9 +56,20 @@ public class TextAdventureEngine : MonoBehaviour, IEngine
     /// </summary>
     private ConcurrentQueue<string> assetQueue = new ConcurrentQueue<string>();
 
+    /// <summary>
+    /// A List of all available adventures
+    /// </summary>
     private readonly List<ITextAdventure> adventures = Config.GetAdventures();
 
+    /// <summary>
+    /// A flag that determines if the adventure list should be printed
+    /// </summary>
     private bool readyToListAdventures = false;
+
+    /// <summary>
+    /// The thread for the current adventure!
+    /// </summary>
+    private Thread adventureThread = null;
 
     // Initialize the GameEngine
     void Start()
@@ -74,12 +85,16 @@ public class TextAdventureEngine : MonoBehaviour, IEngine
 
     }
 
+    /// <inheritdoc/>
     public void ListAdventures()
     {
         this.readyToListAdventures = true;
     }
 
-    public void DoListAdventures()
+    /// <summary>
+    /// Prints the title screen and lists all available adventures
+    /// </summary>
+    private void DoListAdventures()
     {
 
         this.Clear();
@@ -112,6 +127,10 @@ public class TextAdventureEngine : MonoBehaviour, IEngine
         
     }
 
+    /// <summary>
+    /// This handler is used on the Title screen when selecting a game.
+    /// </summary>
+    /// <param name="gameId">The users input</param>
     private void SelectGame(string gameId)
     {
         // When a message comes in, clear out the user input box
@@ -142,6 +161,9 @@ public class TextAdventureEngine : MonoBehaviour, IEngine
 
     }
 
+    /// <summary>
+    /// Starts a new adventure thread for the current adventure
+    /// </summary>
     private void StartAdventure()
     {
         // Register how user input is handled
@@ -153,11 +175,21 @@ public class TextAdventureEngine : MonoBehaviour, IEngine
         this.userInput.ActivateInputField();
 
         this.Clear();
+
+        if(adventureThread != null && adventureThread.IsAlive)
+        {
+            adventureThread.Abort();
+        }
+
         // Start the Adventure
-        Thread t = new Thread(new ThreadStart(this.adventure.Run));
-        t.Start();
+        adventureThread = new Thread(new ThreadStart(this.adventure.Run));
+        adventureThread.Start();
     }
 
+    /// <summary>
+    /// This method is invoked during an adventure when the user enters a message
+    /// </summary>
+    /// <param name="message">The users input</param>
     private void HandleUserInput(string message)
     {
         // When a message comes in, clear out the user input box
